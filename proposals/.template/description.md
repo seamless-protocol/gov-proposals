@@ -1,3 +1,7 @@
-# Summary
+# [SIP-XX] ADD_TITLE_HERE
 
-# Context and motivation
+## Summary
+...
+
+## Context and motivation
+...
