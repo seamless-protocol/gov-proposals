@@ -1,66 +1,26 @@
-## Foundry
+## Seamless governance proposals
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
+This repo contains scripts and tools for making and testing proposals for the Seamless governance.
 
 ## Usage
 
-### Build
-
+To create new proposal run:
 ```shell
-$ forge build
+make create-proposal name=PROPOSAL_NAME
 ```
 
-### Test
+It will create a folder `PROPOSAL_NAME` inside of the `proposals` folder with the template proposal files:
+- `Proposal.sol` containing the proposal payload. Implement here the `_makeProposal` by adding `_addAction` calls with the desired actions of the proposal.
+- `description.md` - Change this file by adding the proposal description in the markdown format.
+- `TestProposal.t.sol` - Implement tests inside this file. Function `_passProposal` from the `GovTestHelper` can be used to queue up and execute the proposal.
+- `DeployProposal.s.sol` is a script which is run on the proposal deployment. By default it doesn't need to be changed.
 
+Run proposal tests with the command:
 ```shell
-$ forge test
+make test-proposal name=PROPOSAL_NAME
 ```
 
-### Format
-
+Deploy the proposal onchain with the command:
 ```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+make deploy-proposal name=PROPOSAL_NAME
 ```
