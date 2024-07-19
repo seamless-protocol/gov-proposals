@@ -6,7 +6,7 @@ import {Proposal} from "./Proposal.sol";
 import {IGovernor} from "@openzeppelin/contracts/governance/IGovernor.sol";
 import {SeamlessAddressBook} from "../../helpers/SeamlessAddressBook.sol";
 
-contract ScriptPropose is Script {
+contract DeployProposal is Script {
     function setUp() public {}
 
     function run(string memory descriptionPath) public {
