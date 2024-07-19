@@ -2,3 +2,4 @@ ds-test/=lib/forge-std/lib/ds-test/src/
 forge-std/=lib/forge-std/src/
 @seamless-governance/=lib/governance/src/
 @openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
+@aave/contracts/=lib/aave-v3-core/contracts/
