@@ -7,3 +7,6 @@
 [submodule "lib/governance"]
 	path = lib/governance
 	url = https://github.com/seamless-protocol/governance
+[submodule "lib/aave-v3-core"]
+	path = lib/aave-v3-core
+	url = https://github.com/seamless-protocol/aave-v3-core
