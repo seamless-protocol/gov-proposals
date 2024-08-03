@@ -16,7 +16,7 @@ contract Proposal is SeamlessGovProposal {
       aTokenImpl: SeamlessAddressBook.A_TOKEN_IMPLEMENTATION, 
       stableDebtTokenImpl: SeamlessAddressBook.STABLE_DEBT_TOKEN_IMPLEMENTATION,
       variableDebtTokenImpl: SeamlessAddressBook.VARIABLE_DEBT_TOKEN_IMPLEMENTATION,
-      underlyingAssetDecimals: 18,
+      underlyingAssetDecimals: 6,
       interestRateStrategyAddress: SeamlessAddressBook.USDC_INTEREST_RATE_STRATEGY,
       underlyingAsset: SeamlessAddressBook.SEAMLESS_RESERVED_USDC,
       treasury: SeamlessAddressBook.SEAMLESS_TREASURY,
@@ -31,7 +31,7 @@ contract Proposal is SeamlessGovProposal {
     });
 
   uint256 constant rUSDC_LTV = 75_00;    // LTV to 75%
-  uint256 constant rUSDC_LT = 77_00;     // Liquidation threshold to 77%
+  uint256 constant rUSDC_LT = 78_00;     // Liquidation threshold to 77%
   uint256 constant rUSDC_LB = 105_00;    // Liquidation bonus to 5%
 
   uint256 constant supplyCap = 40_000_000;
