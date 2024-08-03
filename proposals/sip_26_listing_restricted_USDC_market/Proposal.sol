@@ -31,10 +31,10 @@ contract Proposal is SeamlessGovProposal {
     });
 
   uint256 constant rUSDC_LTV = 75_00;    // LTV to 75%
-  uint256 constant rUSDC_LT = 78_00;     // Liquidation threshold to 77%
+  uint256 constant rUSDC_LT = 78_00;     // Liquidation threshold to 78%
   uint256 constant rUSDC_LB = 105_00;    // Liquidation bonus to 5%
 
-  uint256 constant supplyCap = 40_000_000;
+  uint256 constant supplyCap = 40_000_000; // Supply cap to 40m USDC
 
   function _makeProposal() internal virtual override {
     ConfiguratorInputTypes.InitReserveInput[] memory initReserveInputs = 
