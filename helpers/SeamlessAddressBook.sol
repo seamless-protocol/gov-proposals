@@ -28,6 +28,6 @@ library SeamlessAddressBook {
   address constant SEAM = 0x1C7a460413dD4e964f96D8dFC56E7223cE88CD85;
   address constant USDC = 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913;
 
-  // TODO: change this address after deployment
-  address public constant SEAMLESS_RESERVED_USDC = 0x3e8707557D4aD25d6042f590bCF8A06071Da2c5F;
+  // TODO: change this address after deployment (currently random token address just for testing)
+  address public constant SEAMLESS_RESERVED_USDC = 0x998e44232BEF4F8B033e5A5175BDC97F2B10d5e5;
 }
