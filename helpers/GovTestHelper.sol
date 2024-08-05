@@ -9,8 +9,10 @@ import {IVotes} from "@openzeppelin/contracts/governance/utils/IVotes.sol";
 import {IERC20} from "@openzeppelin/contracts/interfaces/IERC20.sol";
 
 contract GovTestHelper is Test  {
-  function _passProposal(ISeamlessGovProposal proposal) internal {
-      IGovernor governance = IGovernor(SeamlessAddressBook.GOVERNOR_SHORT);
+  function _passProposal(
+    ISeamlessGovProposal proposal,
+    IGovernor governance
+  ) internal {
       address voter = makeAddr("voter");
 
       vm.startPrank(voter);
@@ -62,5 +64,19 @@ contract GovTestHelper is Test  {
       );
 
       vm.stopPrank();
+    }
+
+    function _passProposalShortGov(ISeamlessGovProposal proposal) internal {
+      _passProposal(
+        proposal,
+        IGovernor(SeamlessAddressBook.GOVERNOR_SHORT)
+      );
+    }
+
+    function _passProposalLongGov(ISeamlessGovProposal proposal) internal {
+      _passProposal(
+        proposal,
+        IGovernor(SeamlessAddressBook.GOVERNOR_LONG)
+      );
     }
 }
