@@ -21,7 +21,7 @@ contract TestProposal is Test, GovTestHelper {
       uint256 balanceBeforeGov = seam.balanceOf(SeamlessAddressBook.TIMELOCK_SHORT);
       uint256 balanceBeforeTestWallet = seam.balanceOf(testWallet);
 
-      _passProposal(proposal);
+      _passProposalShortGov(proposal);
 
       uint256 balanceAfterGov = seam.balanceOf(SeamlessAddressBook.TIMELOCK_SHORT);
       uint256 balanceAfterTestWallet = seam.balanceOf(testWallet);
