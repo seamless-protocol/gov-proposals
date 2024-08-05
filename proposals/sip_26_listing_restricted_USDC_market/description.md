@@ -29,5 +29,5 @@ Given USDC’s strong liquidity and peg stability, we recommend a Liquidation Bo
 |Borrow Cap|0|
 
 ## Resources/References
-- This proposal is prepared with the [Samless Governance Proposals tools](https://github.com/seamless-protocol/gov-proposals)
+- This proposal is prepared with the [Seamless Governance Proposals tools](https://github.com/seamless-protocol/gov-proposals)
 - Proposal actions and tests can be found [here](https://github.com/seamless-protocol/gov-proposals/tree/main/proposals/sip_26_listing_restricted_USDC_market)
