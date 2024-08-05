@@ -19,7 +19,7 @@ contract TestProposal is Test, GovTestHelper {
     }
 
     function test_checkAToken_afterPassingProposal() public {
-      _passProposal(proposal);
+      _passProposalShortGov(proposal);
 
       (address aTokenAddress,,) = poolDataProvider.getReserveTokensAddresses(SeamlessAddressBook.SEAMLESS_RESERVED_USDC);
 
@@ -33,7 +33,7 @@ contract TestProposal is Test, GovTestHelper {
     }
 
     function test_checkReserveConfiguration_afterPassingProposal() public {
-      _passProposal(proposal);
+      _passProposalShortGov(proposal);
 
       (
         uint256 decimals,
@@ -67,7 +67,7 @@ contract TestProposal is Test, GovTestHelper {
     }
 
     function test_checkAssetSource_afterPassingProposal_sameAsUSDCSource() public {
-      _passProposal(proposal);
+      _passProposalShortGov(proposal);
 
       assertEq(
         aaveOracle.getSourceOfAsset(SeamlessAddressBook.SEAMLESS_RESERVED_USDC),
