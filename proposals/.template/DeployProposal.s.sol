@@ -17,8 +17,8 @@ contract DeployProposal is Script {
 
         string memory description = vm.readFile(descriptionPath);
 
-        uint256 proposerPrivateKey = vm.envUint("PROPOSER_PK");
-        vm.startBroadcast(proposerPrivateKey);
+        address proposerAddress = vm.envAddress("PROPOSER_ADDRESS");
+        vm.startBroadcast(proposerAddress);
         governance.propose(
             proposal.getTargets(),
             proposal.getValues(),
