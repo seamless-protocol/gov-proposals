@@ -2,7 +2,7 @@
 
 ## Summary
 
-Platform reward emissions are ending on August 20th (in 12 days). Proposing an extension of the platform reward budget by drawing down on the SEAM in the short governor timelock and claiming more SEAM from the master emissions vesting smart contract.
+Platform reward emissions are ending on August 20th, 2024. Proposing an extension of the platform reward budget by drawing down on the SEAM in the short governor timelock and claiming more SEAM from the master emissions vesting smart contract.
 
 Proposal for platforms rewards are:
 - **Continue rewards?** YES
