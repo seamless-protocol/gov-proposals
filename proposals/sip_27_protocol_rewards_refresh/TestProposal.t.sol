@@ -20,16 +20,19 @@ contract TestProposal is Test, GovTestHelper {
     function test_SeamTransferedToGuardian_afterPassingProposal() public {
         IERC20 seam = IERC20(SeamlessAddressBook.SEAM);
 
-        uint256 balanceBefore =
+        uint256 guardianBalanceBefore =
             seam.balanceOf(SeamlessAddressBook.GUARDIAN_MULTISIG);
+        uint256 timelockBalanceBefore =
+            seam.balanceOf(SeamlessAddressBook.TIMELOCK_SHORT);
 
         _passProposalShortGov(proposal);
 
-        uint256 balanceAfter =
+        uint256 guardianBalanceAfter =
             seam.balanceOf(SeamlessAddressBook.GUARDIAN_MULTISIG);
+        uint256 timelockBalanceAfter =
+            seam.balanceOf(SeamlessAddressBook.TIMELOCK_SHORT);
 
-        uint256 addedBalance = balanceAfter - balanceBefore;
-
-        assertEq(addedBalance, 500_000 * 1e18);
+        assertEq(guardianBalanceAfter - guardianBalanceBefore, 500_000 * 1e18);
+        assertEq(timelockBalanceBefore - timelockBalanceAfter, 500_000 * 1e18);
     }
 }
