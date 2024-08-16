@@ -21,7 +21,7 @@ contract Proposal is SeamlessGovProposal {
             SeamlessAddressBook.SEAM_EMISSION_MANAGER_1,
             abi.encodeWithSelector(
                 ISeamEmissionManager.claim.selector,
-                SeamlessAddressBook.GOVERNOR_SHORT
+                SeamlessAddressBook.TIMELOCK_SHORT
             )
         );
 
@@ -29,7 +29,7 @@ contract Proposal is SeamlessGovProposal {
             SeamlessAddressBook.SEAM_EMISSION_MANAGER_2,
             abi.encodeWithSelector(
                 ISeamEmissionManager.claim.selector,
-                SeamlessAddressBook.GOVERNOR_SHORT
+                SeamlessAddressBook.TIMELOCK_SHORT
             )
         );
 
