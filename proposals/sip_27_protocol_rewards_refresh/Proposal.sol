@@ -10,7 +10,6 @@ import { ISeamEmissionManager } from
 import { IERC20 } from "@openzeppelin/contracts/interfaces/IERC20.sol";
 
 contract Proposal is SeamlessGovProposal {
-
     uint256 public constant budgetAmount = 500_000 * 1e18;
 
     constructor() {
@@ -37,8 +36,8 @@ contract Proposal is SeamlessGovProposal {
         _addAction(
             SeamlessAddressBook.SEAM,
             abi.encodeWithSelector(
-                IERC20.transfer.selector, 
-                SeamlessAddressBook.GUARDIAN_MULTISIG, 
+                IERC20.transfer.selector,
+                SeamlessAddressBook.GUARDIAN_MULTISIG,
                 budgetAmount
             )
         );
