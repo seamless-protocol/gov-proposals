@@ -13,6 +13,7 @@ contract TestProposal is Test, GovTestHelper {
     Proposal public proposal;
 
     function setUp() public {
+        vm.rollFork(18529851);
         proposal = new Proposal();
     }
 
@@ -30,16 +31,5 @@ contract TestProposal is Test, GovTestHelper {
         uint256 addedBalance = balanceAfter - balanceBefore;
 
         assertEq(addedBalance, 500_000 * 1e18);
-    }
-
-    function test_BothSeamEmissionManagersCalled() public {
-        _passProposalShortGov(proposal);
-        ISeamEmissionManager emissionManager1 =
-            ISeamEmissionManager(SeamlessAddressBook.SEAM_EMISSION_MANAGER_1);
-        ISeamEmissionManager emissionManager2 =
-            ISeamEmissionManager(SeamlessAddressBook.SEAM_EMISSION_MANAGER_2);
-
-        assertEq(emissionManager1.getLastClaimedTimestamp(), block.timestamp);
-        assertEq(emissionManager2.getLastClaimedTimestamp(), block.timestamp);
     }
 }

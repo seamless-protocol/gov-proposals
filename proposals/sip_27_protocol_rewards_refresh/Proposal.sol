@@ -18,22 +18,6 @@ contract Proposal is SeamlessGovProposal {
 
     function _makeProposal() internal virtual override {
         _addAction(
-            SeamlessAddressBook.SEAM_EMISSION_MANAGER_1,
-            abi.encodeWithSelector(
-                ISeamEmissionManager.claim.selector,
-                SeamlessAddressBook.TIMELOCK_SHORT
-            )
-        );
-
-        _addAction(
-            SeamlessAddressBook.SEAM_EMISSION_MANAGER_2,
-            abi.encodeWithSelector(
-                ISeamEmissionManager.claim.selector,
-                SeamlessAddressBook.TIMELOCK_SHORT
-            )
-        );
-
-        _addAction(
             SeamlessAddressBook.SEAM,
             abi.encodeWithSelector(
                 IERC20.transfer.selector,
