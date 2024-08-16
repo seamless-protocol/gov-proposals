@@ -26,4 +26,4 @@ Under this proposal, the rewards pool for markets on Seamless Protocol will gain
 
 - Discourse discussion [here](https://seamlessprotocol.discourse.group/t/pcp-protocol-rewards-refresh-4-marching-ahead/542)
 - This proposal is prepared with the [Seamless Governance Proposals tools](https://github.com/seamless-protocol/gov-proposals)
-- Proposal actions and tests can be found [here](https://github.com/seamless-protocol/gov-proposals/tree/main/proposals/sip_27_sip_27_protocol_rewards_refresh)
+- Proposal actions and tests can be found [here](https://github.com/seamless-protocol/gov-proposals/tree/main/proposals/sip_27_protocol_rewards_refresh)
