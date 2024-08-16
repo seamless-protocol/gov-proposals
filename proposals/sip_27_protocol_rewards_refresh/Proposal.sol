@@ -11,7 +11,7 @@ import { IERC20 } from "@openzeppelin/contracts/interfaces/IERC20.sol";
 
 contract Proposal is SeamlessGovProposal {
 
-    uint256 public constant BUDGET_AMOUNT = 500_000 * 1e18;
+    uint256 public constant budgetAmount = 500_000 * 1e18;
 
     constructor() {
         _makeProposal();
@@ -39,7 +39,7 @@ contract Proposal is SeamlessGovProposal {
             abi.encodeWithSelector(
                 IERC20.transfer.selector, 
                 SeamlessAddressBook.GUARDIAN_MULTISIG, 
-                BUDGET_AMOUNT
+                budgetAmount
             )
         );
     }
