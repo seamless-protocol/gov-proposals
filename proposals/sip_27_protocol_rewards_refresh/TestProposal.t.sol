@@ -16,7 +16,7 @@ contract TestProposal is Test, GovTestHelper {
         proposal = new Proposal();
     }
 
-    function test_SeamClaimedToGuardian_afterPassingProposal() public {
+    function test_SeamTransferedToGuardian_afterPassingProposal() public {
         IERC20 seam = IERC20(SeamlessAddressBook.SEAM);
 
         uint256 balanceBefore =
@@ -27,7 +27,9 @@ contract TestProposal is Test, GovTestHelper {
         uint256 balanceAfter =
             seam.balanceOf(SeamlessAddressBook.GUARDIAN_MULTISIG);
 
-        assertGt(balanceAfter, balanceBefore);
+        uint256 addedBalance = balanceAfter - balanceBefore;
+
+        assertEq(addedBalance, 500_000 * 1e18);
     }
 
     function test_BothSeamEmissionManagersCalled() public {
