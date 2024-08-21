@@ -18,6 +18,7 @@ contract TestProposal is Test, GovTestHelper {
     IAaveOracle aaveOracle = IAaveOracle(SeamlessAddressBook.AAVE_ORACLE);
 
     function setUp() public {
+        vm.rollFork(18057033);
         proposal = new Proposal();
     }
 
