@@ -5,8 +5,6 @@ import { Test, console } from "forge-std/Test.sol";
 import { Proposal } from "./Proposal.sol";
 import { GovTestHelper } from "../../helpers/GovTestHelper.sol";
 import { SeamlessAddressBook } from "../../helpers/SeamlessAddressBook.sol";
-
-// import { EscrowSeam } from "@seamless-governance/EscrowSeam.sol";
 import { ERC1967Utils } from
     "@openzeppelin/contracts/proxy/ERC1967/ERC1967Utils.sol";
 
