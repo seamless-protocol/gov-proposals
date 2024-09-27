@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: BUSL-1.1
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.21;
 
 library SeamlessAddressBook {
@@ -28,6 +28,8 @@ library SeamlessAddressBook {
   address constant SEAM = 0x1C7a460413dD4e964f96D8dFC56E7223cE88CD85;
   address constant USDC = 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913;
   address constant ESSEAM = 0x998e44232BEF4F8B033e5A5175BDC97F2B10d5e5;
+  address constant CBBTC = 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf;
+  address constant EURC = 0x60a3E35Cc302bFA44Cb288Bc5a4F316Fdb1adb42;
 
   address constant SEAMLESS_RESERVED_USDC = 0x9660Af3B1955648A72F5C958E80449032d645755;
 
