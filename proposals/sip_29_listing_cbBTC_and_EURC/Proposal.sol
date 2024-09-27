@@ -35,7 +35,20 @@ contract Proposal is SeamlessGovProposal {
         sources[0] = 0x64c911996D3c6aC71f9b455B1E8E7266BcbD848F; // Chainlink BTC/USD feed - https://data.chain.link/feeds/base/base/btc-usd
         sources[1] = 0xDAe398520e2B67cd3f27aeF9Cf14D93D927f8250; // Chainlink EURC/USD feed - https://data.chain.link/feeds/base/base/eurc-usd
 
+        _addAction(
+            SeamlessAddressBook.AAVE_ORACLE,
+            abi.encodeWithSelector(
+                IAaveOracle.setAssetSources.selector, assets, sources
+            )
+        );
+
+        // Init reserves
+
+        ConfiguratorInputTypes.InitReserveInput[] memory initReserveInputs =
+            new ConfiguratorInputTypes.InitReserveInput[](2);
+
         // BTC
+
         DefaultReserveInterestRateStrategy interestStrategycbBTC = new DefaultReserveInterestRateStrategy(
             IPoolAddressesProvider(SeamlessAddressBook.POOL_ADDRESSES_PROVIDER),
             _bpsToRay(45_00),
@@ -48,18 +61,6 @@ contract Proposal is SeamlessGovProposal {
             0,
             0
         );
-
-        _addAction(
-            SeamlessAddressBook.AAVE_ORACLE,
-            abi.encodeWithSelector(
-                IAaveOracle.setAssetSources.selector, assets, sources
-            )
-        );
-
-        // Init Reserves
-
-        ConfiguratorInputTypes.InitReserveInput[] memory initReserveInputs =
-            new ConfiguratorInputTypes.InitReserveInput[](2);
 
         initReserveInputs[0] = ConfiguratorInputTypes.InitReserveInput({
             aTokenImpl: SeamlessAddressBook.A_TOKEN_IMPLEMENTATION,
@@ -82,6 +83,7 @@ contract Proposal is SeamlessGovProposal {
         });
 
         // EURC
+
         DefaultReserveInterestRateStrategy interestStrategyEURC = new DefaultReserveInterestRateStrategy(
             IPoolAddressesProvider(SeamlessAddressBook.POOL_ADDRESSES_PROVIDER),
             _bpsToRay(90_00),
