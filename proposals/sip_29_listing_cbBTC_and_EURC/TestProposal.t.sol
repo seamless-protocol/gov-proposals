@@ -128,9 +128,36 @@ contract TestProposal is Test, GovTestHelper {
     function test_cbBTCSeeded_afterPassingProposal() public {
         _passProposalShortGov(proposal);
 
-        assertGt(
-            poolDataProvider.getATokenTotalSupply(SeamlessAddressBook.CBBTC), 0
+        assertEq(
+            poolDataProvider.getATokenTotalSupply(SeamlessAddressBook.CBBTC),
+            2e5
         );
+    }
+
+    function test_supplyBorrowcbBTC_afterPassingProposal() public {
+        _passProposalShortGov(proposal);
+
+        address user = makeAddr("user");
+
+        deal(SeamlessAddressBook.CBBTC, user, 1e8);
+
+        vm.startPrank(user);
+
+        IERC20Metadata(SeamlessAddressBook.CBBTC).approve(address(pool), 1e8);
+
+        pool.supply(SeamlessAddressBook.CBBTC, 1e8, user, 0);
+
+        (,,,,, uint256 healthFactor) = pool.getUserAccountData(user);
+
+        assertEq(healthFactor, type(uint256).max);
+
+        pool.borrow(SeamlessAddressBook.CBBTC, 1e4, 2, 0, user);
+
+        (,,,,, healthFactor) = pool.getUserAccountData(user);
+
+        assertLt(healthFactor, type(uint256).max);
+
+        vm.stopPrank();
     }
 
     function test_eurcConfig_afterPassingProposal() public {
@@ -177,8 +204,34 @@ contract TestProposal is Test, GovTestHelper {
     function test_eurcSeeded_afterPassingProposal() public {
         _passProposalShortGov(proposal);
 
-        assertGt(
-            poolDataProvider.getATokenTotalSupply(SeamlessAddressBook.EURC), 0
+        assertEq(
+            poolDataProvider.getATokenTotalSupply(SeamlessAddressBook.EURC), 1e6
         );
+    }
+
+    function test_supplyBorrowEURC_afterPassingProposal() public {
+        _passProposalShortGov(proposal);
+
+        address user = makeAddr("user");
+
+        deal(SeamlessAddressBook.EURC, user, 1e8);
+
+        vm.startPrank(user);
+
+        IERC20Metadata(SeamlessAddressBook.EURC).approve(address(pool), 1e8);
+
+        pool.supply(SeamlessAddressBook.EURC, 1e8, user, 0);
+
+        (,,,,, uint256 healthFactor) = pool.getUserAccountData(user);
+
+        assertEq(healthFactor, type(uint256).max);
+
+        pool.borrow(SeamlessAddressBook.EURC, 1e4, 2, 0, user);
+
+        (,,,,, healthFactor) = pool.getUserAccountData(user);
+
+        assertLt(healthFactor, type(uint256).max);
+
+        vm.stopPrank();
     }
 }
