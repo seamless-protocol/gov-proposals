@@ -40,15 +40,15 @@ Both cbBTC and EURC are new and important assets on Base and should be listed on
 |Supply Cap | 3,000,000|
 |Borrow Cap | 2,700,000|
 |Debt Ceiling | -|
-|LTV | 65.00%|
-|LT | 70.00%|
-|Liquidation Bonus | 7.50%|
-|Liquidation Protocol Fee | 10.00%|
-|Reserve Factor | 20.00%|
-|Variable Base | 0.00%|
-|Variable Slope1 | 7.00%|
-|Variable Slope2 | 75.00%|
-|Uoptimal | 90.00%|
+|LTV | 65%|
+|LT | 70%|
+|Liquidation Bonus | 7.5%|
+|Liquidation Protocol Fee | 10%|
+|Reserve Factor | 20%|
+|Variable Base | 0%|
+|Variable Slope1 | 7%|
+|Variable Slope2 | 75%|
+|Uoptimal | 90%|
 
 ## Resources/References
 
