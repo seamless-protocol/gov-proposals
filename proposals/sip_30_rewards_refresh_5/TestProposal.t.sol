@@ -44,8 +44,8 @@ contract TestProposal is Test, GovTestHelper {
 
         assertEq(guardianBalanceAfter - guardianBalanceBefore, 500_000 * 1e18);
         assertEq(
-            timelockBalanceAfter - timelockBalanceBefore,
-            expectedEmissionClaimAmount - (500_000 * 1e18)
+            _diff(timelockBalanceAfter, timelockBalanceBefore),
+            _diff(expectedEmissionClaimAmount, 500_000 * 1e18)
         );
         assertEq(
             emissionManagerBalanceBefore - emissionManagerBalanceAfter,
@@ -53,10 +53,11 @@ contract TestProposal is Test, GovTestHelper {
         );
     }
 
-    function _expectedEmissionManagerClaimAmount()
-        internal
-        returns (uint256)
-    {
+    function _diff(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a > b ? a - b : b - a;
+    }
+
+    function _expectedEmissionManagerClaimAmount() internal returns (uint256) {
         uint256 snapshotId = vm.snapshot();
 
         _passProposalShortGov(proposal);

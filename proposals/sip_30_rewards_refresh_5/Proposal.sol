@@ -5,7 +5,8 @@ import {
     SeamlessGovProposal,
     SeamlessAddressBook
 } from "../../helpers/SeamlessGovProposal.sol";
-import { ISeamEmissionManager } from "@seamless-governance/interfaces/ISeamEmissionManager.sol";
+import { ISeamEmissionManager } from
+    "@seamless-governance/interfaces/ISeamEmissionManager.sol";
 import { IERC20 } from "@openzeppelin/contracts/interfaces/IERC20.sol";
 
 contract Proposal is SeamlessGovProposal {
@@ -23,7 +24,7 @@ contract Proposal is SeamlessGovProposal {
                 SeamlessAddressBook.TIMELOCK_SHORT
             )
         );
-        
+
         _addAction(
             SeamlessAddressBook.SEAM,
             abi.encodeWithSelector(
