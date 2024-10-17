@@ -18,7 +18,7 @@ contract DeployInterestRateStrategies is Script {
     function run() public {
         address deployerAddress = vm.envAddress("DEPLOYER_ADDRESS");
         vm.startBroadcast(deployerAddress);
-          DefaultReserveInterestRateStrategy interestStrategycbBTC = new DefaultReserveInterestRateStrategy(
+        DefaultReserveInterestRateStrategy interestStrategycbBTC = new DefaultReserveInterestRateStrategy(
             IPoolAddressesProvider(SeamlessAddressBook.POOL_ADDRESSES_PROVIDER),
             _bpsToRay(45_00),
             0,
@@ -29,10 +29,10 @@ contract DeployInterestRateStrategies is Script {
             0,
             0,
             0
-          );
-          console.log("interestStrategycbBTC: ", address(interestStrategycbBTC));
+        );
+        console.log("interestStrategycbBTC: ", address(interestStrategycbBTC));
 
-          DefaultReserveInterestRateStrategy interestStrategyEURC = new DefaultReserveInterestRateStrategy(
+        DefaultReserveInterestRateStrategy interestStrategyEURC = new DefaultReserveInterestRateStrategy(
             IPoolAddressesProvider(SeamlessAddressBook.POOL_ADDRESSES_PROVIDER),
             _bpsToRay(90_00),
             0,
@@ -43,8 +43,8 @@ contract DeployInterestRateStrategies is Script {
             0,
             0,
             0
-          );
-          console.log("interestStrategyEURC: ", address(interestStrategyEURC));
+        );
+        console.log("interestStrategyEURC: ", address(interestStrategyEURC));
         vm.stopBroadcast();
     }
 

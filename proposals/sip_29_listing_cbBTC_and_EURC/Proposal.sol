@@ -49,7 +49,8 @@ contract Proposal is SeamlessGovProposal {
             variableDebtTokenImpl: SeamlessAddressBook
                 .VARIABLE_DEBT_TOKEN_IMPLEMENTATION,
             underlyingAssetDecimals: 8,
-            interestRateStrategyAddress: SeamlessAddressBook.CBBTC_INTEREST_RATE_STRATEGY,
+            interestRateStrategyAddress: SeamlessAddressBook
+                .CBBTC_INTEREST_RATE_STRATEGY,
             underlyingAsset: SeamlessAddressBook.CBBTC,
             treasury: SeamlessAddressBook.SEAMLESS_TREASURY,
             incentivesController: SeamlessAddressBook.INCENTIVES_CONTROLLER,
@@ -70,7 +71,8 @@ contract Proposal is SeamlessGovProposal {
             variableDebtTokenImpl: SeamlessAddressBook
                 .VARIABLE_DEBT_TOKEN_IMPLEMENTATION,
             underlyingAssetDecimals: 6,
-            interestRateStrategyAddress: SeamlessAddressBook.EURC_INTEREST_RATE_STRATEGY,
+            interestRateStrategyAddress: SeamlessAddressBook
+                .EURC_INTEREST_RATE_STRATEGY,
             underlyingAsset: SeamlessAddressBook.EURC,
             treasury: SeamlessAddressBook.SEAMLESS_TREASURY,
             incentivesController: SeamlessAddressBook.INCENTIVES_CONTROLLER,
