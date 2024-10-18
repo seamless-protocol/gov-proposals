@@ -29,11 +29,8 @@ contract TestProposal is Test, GovTestHelper {
     IPool pool = IPool(SeamlessAddressBook.POOL);
 
     function setUp() public {
-        vm.rollFork(20303742);
+        vm.rollFork(21195140);
         proposal = new Proposal();
-
-        deal(SeamlessAddressBook.CBBTC, SeamlessAddressBook.TIMELOCK_SHORT, 2e5);
-        deal(SeamlessAddressBook.EURC, SeamlessAddressBook.TIMELOCK_SHORT, 1e6);
     }
 
     function test_cbBTCTokens_afterPassingProposal() public {

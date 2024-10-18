@@ -8,14 +8,8 @@ import {
 import { IPoolConfigurator } from
     "@aave/contracts/interfaces/IPoolConfigurator.sol";
 import { IPool } from "@aave/contracts/interfaces/IPool.sol";
-import { IPoolAddressesProvider } from
-    "@aave/contracts/interfaces/IPoolAddressesProvider.sol";
 import { ConfiguratorInputTypes } from
     "@aave/contracts/protocol/libraries/types/ConfiguratorInputTypes.sol";
-import { DefaultReserveInterestRateStrategy } from
-    "@aave/contracts/protocol/pool/DefaultReserveInterestRateStrategy.sol";
-import { WadRayMath } from
-    "@aave/contracts/protocol/libraries/math/WadRayMath.sol";
 import { IAaveOracle } from "@aave/contracts/interfaces/IAaveOracle.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -48,20 +42,6 @@ contract Proposal is SeamlessGovProposal {
             new ConfiguratorInputTypes.InitReserveInput[](2);
 
         // BTC
-
-        DefaultReserveInterestRateStrategy interestStrategycbBTC = new DefaultReserveInterestRateStrategy(
-            IPoolAddressesProvider(SeamlessAddressBook.POOL_ADDRESSES_PROVIDER),
-            _bpsToRay(45_00),
-            0,
-            _bpsToRay(4_00),
-            _bpsToRay(300_00),
-            0,
-            0,
-            0,
-            0,
-            0
-        );
-
         initReserveInputs[0] = ConfiguratorInputTypes.InitReserveInput({
             aTokenImpl: SeamlessAddressBook.A_TOKEN_IMPLEMENTATION,
             stableDebtTokenImpl: SeamlessAddressBook
@@ -69,7 +49,8 @@ contract Proposal is SeamlessGovProposal {
             variableDebtTokenImpl: SeamlessAddressBook
                 .VARIABLE_DEBT_TOKEN_IMPLEMENTATION,
             underlyingAssetDecimals: 8,
-            interestRateStrategyAddress: address(interestStrategycbBTC),
+            interestRateStrategyAddress: SeamlessAddressBook
+                .CBBTC_INTEREST_RATE_STRATEGY,
             underlyingAsset: SeamlessAddressBook.CBBTC,
             treasury: SeamlessAddressBook.SEAMLESS_TREASURY,
             incentivesController: SeamlessAddressBook.INCENTIVES_CONTROLLER,
@@ -83,20 +64,6 @@ contract Proposal is SeamlessGovProposal {
         });
 
         // EURC
-
-        DefaultReserveInterestRateStrategy interestStrategyEURC = new DefaultReserveInterestRateStrategy(
-            IPoolAddressesProvider(SeamlessAddressBook.POOL_ADDRESSES_PROVIDER),
-            _bpsToRay(90_00),
-            0,
-            _bpsToRay(7_00),
-            _bpsToRay(75_00),
-            0,
-            0,
-            0,
-            0,
-            0
-        );
-
         initReserveInputs[1] = ConfiguratorInputTypes.InitReserveInput({
             aTokenImpl: SeamlessAddressBook.A_TOKEN_IMPLEMENTATION,
             stableDebtTokenImpl: SeamlessAddressBook
@@ -104,7 +71,8 @@ contract Proposal is SeamlessGovProposal {
             variableDebtTokenImpl: SeamlessAddressBook
                 .VARIABLE_DEBT_TOKEN_IMPLEMENTATION,
             underlyingAssetDecimals: 6,
-            interestRateStrategyAddress: address(interestStrategyEURC),
+            interestRateStrategyAddress: SeamlessAddressBook
+                .EURC_INTEREST_RATE_STRATEGY,
             underlyingAsset: SeamlessAddressBook.EURC,
             treasury: SeamlessAddressBook.SEAMLESS_TREASURY,
             incentivesController: SeamlessAddressBook.INCENTIVES_CONTROLLER,
@@ -305,9 +273,5 @@ contract Proposal is SeamlessGovProposal {
                 0
             )
         );
-    }
-
-    function _bpsToRay(uint256 amount) internal pure returns (uint256) {
-        return (amount * WadRayMath.RAY) / 10_000;
     }
 }
