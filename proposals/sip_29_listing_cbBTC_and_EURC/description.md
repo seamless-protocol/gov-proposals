@@ -1,4 +1,6 @@
-# [SIP-29] Listing cbBTC and EURC
+# [SIP-29] Listing cbBTC and EURC (2)
+
+*There was an issue with the previous SIP 29 proposal payload, the payload has been fixed and requires another vote.*
 
 ## Summary
 
