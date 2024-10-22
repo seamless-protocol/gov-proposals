@@ -29,7 +29,9 @@ contract TestProposal is GovTestHelper {
         uint256 timelockBalanceAfter =
             seam.balanceOf(SeamlessAddressBook.TIMELOCK_SHORT);
 
-        assertEq(aeraAdminBalanceAfter - aeraAdminBalanceBefore, 2_500_000 * 1e18);
+        assertEq(
+            aeraAdminBalanceAfter - aeraAdminBalanceBefore, 2_500_000 * 1e18
+        );
         assertEq(timelockBalanceBefore - timelockBalanceAfter, 2_500_000 * 1e18);
     }
 }
