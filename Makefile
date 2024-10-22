@@ -6,8 +6,8 @@
 
 create-proposal :; cp -R ./proposals/.template ./proposals/${name}
 test-proposal   :; forge test --match-path proposals/${name}/TestProposal.t.sol --fork-url base -vvvv
-deploy-proposal	:; forge script proposals/${name}/DeployProposal.s.sol ./proposals/${name}/description.md --sig "run(string)" --force --rpc-url base --chain base --slow --account ${PROPOSER_ACCOUNT_NAME} --broadcast --verify --delay 5 -vvvv
-deploy-proposal-tenderly :; forge script proposals/${name}/DeployProposal.s.sol ./proposals/${name}/description.md --sig "run(string)" --force --rpc-url tenderly --slow --account ${PROPOSER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}
+deploy-proposal	:; forge script proposals/${name}/DeployProposal.s.sol ./proposals/${name}/description.md false --sig "run(string, bool)" --force --rpc-url base --chain base --slow --account ${PROPOSER_ACCOUNT_NAME} --broadcast --verify --delay 5 -vvvv
+deploy-proposal-tenderly :; forge script proposals/${name}/DeployProposal.s.sol ./proposals/${name}/description.md true --sig "run(string, bool)" --force --rpc-url tenderly --slow --account ${PROPOSER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY} --skip-simulation
 
 test-all				:; forge test --fork-url base
 
