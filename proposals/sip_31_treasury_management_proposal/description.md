@@ -2,7 +2,7 @@
 
 ## Summary
 
-Initiate fourth round of funding for the Aera vault which manages some of the Seamless DAO treasury.
+Initiate fourth round of funding for the Aera vault which manages some of the Seamless DAO treasury. This round of funding is for 2.5 million SEAM.
 
 ## Context and motivation
 
