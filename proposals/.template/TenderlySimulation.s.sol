@@ -8,7 +8,7 @@ import { Proposal } from "./Proposal.sol";
 import { IGovernor } from "@openzeppelin/contracts/governance/IGovernor.sol";
 import { SeamlessAddressBook } from "../../helpers/SeamlessAddressBook.sol";
 
-/// @dev Requires that SIM_VOTER_ADDRESS already has enough delegated votes 
+/// @dev Requires that SIM_VOTER_ADDRESS already has enough delegated votes
 /// to be able to pass proposal by being the only voter
 contract TenderlySimulation is Script {
     // Change this to GOVERNOR_LONG if the proposal is made on the long governor
@@ -16,9 +16,11 @@ contract TenderlySimulation is Script {
 
     Proposal proposal = new Proposal();
 
-    function _getProposalData(
-      string memory descriptionPath
-    ) internal view returns (uint256 proposalId, bytes32 descriptionHash) {
+    function _getProposalData(string memory descriptionPath)
+        internal
+        view
+        returns (uint256 proposalId, bytes32 descriptionHash)
+    {
         string memory description = vm.readFile(descriptionPath);
         descriptionHash = keccak256(bytes(description));
 
@@ -32,17 +34,17 @@ contract TenderlySimulation is Script {
 
     function increaseTimeVotingDelay() public {
         string memory params = string.concat(
-            '[',
+            "[",
             Strings.toString(block.timestamp + governance.votingDelay() + 1),
-            ']'
+            "]"
         );
         vm.rpc("evm_setNextBlockTimestamp", params);
         vm.rpc("evm_mine", "[]");
-    }   
+    }
 
     function castVote(string memory descriptionPath) public {
-        (uint256 proposalId, ) = _getProposalData(descriptionPath);
-        
+        (uint256 proposalId,) = _getProposalData(descriptionPath);
+
         address proposerAddress = vm.envAddress("SIM_VOTER_ADDRESS");
         vm.startBroadcast(proposerAddress);
         governance.castVote(proposalId, 1);
@@ -51,50 +53,48 @@ contract TenderlySimulation is Script {
 
     function increaseTimeVotingPeriod() public {
         string memory params = string.concat(
-            '[',
+            "[",
             Strings.toString(block.timestamp + governance.votingPeriod() + 1),
-            ']'
+            "]"
         );
         vm.rpc("evm_setNextBlockTimestamp", params);
         vm.rpc("evm_mine", "[]");
     }
 
     function queueProposal(string memory descriptionPath) public {
-      (, bytes32 descriptionHash) = _getProposalData(descriptionPath);
-      
-      address proposerAddress = vm.envAddress("SIM_VOTER_ADDRESS");
-      vm.startBroadcast(proposerAddress);
-      governance.queue(
+        (, bytes32 descriptionHash) = _getProposalData(descriptionPath);
+
+        address proposerAddress = vm.envAddress("SIM_VOTER_ADDRESS");
+        vm.startBroadcast(proposerAddress);
+        governance.queue(
             proposal.getTargets(),
             proposal.getValues(),
             proposal.getCalldatas(),
             descriptionHash
-      );
-      vm.stopBroadcast();
+        );
+        vm.stopBroadcast();
     }
 
     function setTimeToProposalEta(string memory descriptionPath) public {
-      (uint256 proposalId, ) = _getProposalData(descriptionPath);
-      string memory params = string.concat(
-          '[',
-          Strings.toString(governance.proposalEta(proposalId) + 1),
-          ']'
-      );
-      vm.rpc("evm_setNextBlockTimestamp", params);
-      vm.rpc("evm_mine", "[]");
+        (uint256 proposalId,) = _getProposalData(descriptionPath);
+        string memory params = string.concat(
+            "[", Strings.toString(governance.proposalEta(proposalId) + 1), "]"
+        );
+        vm.rpc("evm_setNextBlockTimestamp", params);
+        vm.rpc("evm_mine", "[]");
     }
 
     function executeProposal(string memory descriptionPath) public {
-      (, bytes32 descriptionHash) = _getProposalData(descriptionPath);
+        (, bytes32 descriptionHash) = _getProposalData(descriptionPath);
 
-      address proposerAddress = vm.envAddress("SIM_VOTER_ADDRESS");
-      vm.startBroadcast(proposerAddress);
-      governance.execute(
-        proposal.getTargets(),
-        proposal.getValues(),
-        proposal.getCalldatas(),
-        descriptionHash
-      );
-      vm.stopBroadcast();
+        address proposerAddress = vm.envAddress("SIM_VOTER_ADDRESS");
+        vm.startBroadcast(proposerAddress);
+        governance.execute(
+            proposal.getTargets(),
+            proposal.getValues(),
+            proposal.getCalldatas(),
+            descriptionHash
+        );
+        vm.stopBroadcast();
     }
 }
