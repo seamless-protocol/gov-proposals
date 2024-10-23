@@ -6,9 +6,25 @@
 
 create-proposal :; cp -R ./proposals/.template ./proposals/${name}
 test-proposal   :; forge test --match-path proposals/${name}/TestProposal.t.sol --fork-url base -vvvv
-deploy-proposal	:; forge script proposals/${name}/DeployProposal.s.sol ./proposals/${name}/description.md false --sig "run(string, bool)" --force --rpc-url base --chain base --slow --account ${PROPOSER_ACCOUNT_NAME} --broadcast --verify --delay 5 -vvvv
-deploy-proposal-tenderly :; forge script proposals/${name}/DeployProposal.s.sol ./proposals/${name}/description.md true --sig "run(string, bool)" --force --rpc-url tenderly --slow --account ${PROPOSER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY} --skip-simulation
+deploy-proposal	:; forge script proposals/${name}/DeployProposal.s.sol ./proposals/${name}/description.md --sig "run(string)" --force --rpc-url base --chain base --slow --account ${PROPOSER_ACCOUNT_NAME} --broadcast --verify --delay 5 -vvvv
+deploy-proposal-tenderly :; forge script proposals/${name}/DeployProposal.s.sol ./proposals/${name}/description.md --sig "run(string)" --force --rpc-url tenderly --slow --account ${PROPOSER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}
 
 test-all				:; forge test --fork-url base
 
+# Tendely simulation
+tenderly-increaseTimeVotingDelay  :; forge script proposals/${name}/TenderlySimulation.s.sol --sig "increaseTimeVotingDelay()" --force --rpc-url tenderly --slow --account ${SIM_VOTER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
+tenderly-castVote 							  :; forge script proposals/${name}/TenderlySimulation.s.sol ./proposals/${name}/description.md --sig "castVote(string)" --force --rpc-url tenderly --slow --account ${SIM_VOTER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
+tenderly-increaseTimeVotingPeriod :; forge script proposals/${name}/TenderlySimulation.s.sol --sig "increaseTimeVotingPeriod()" --force --rpc-url tenderly --slow --account ${SIM_VOTER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
+tenderly-queueProposal						:; forge script proposals/${name}/TenderlySimulation.s.sol ./proposals/${name}/description.md --sig "queueProposal(string)" --force --rpc-url tenderly --slow --account ${SIM_VOTER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
+tenderly-setTimeToProposalEta			:; forge script proposals/${name}/TenderlySimulation.s.sol ./proposals/${name}/description.md --sig "setTimeToProposalEta(string)" --force --rpc-url tenderly --slow --account ${SIM_VOTER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
+tenderly-executeProposal					:; forge script proposals/${name}/TenderlySimulation.s.sol ./proposals/${name}/description.md --sig "executeProposal(string)" --force --rpc-url tenderly --slow --account ${SIM_VOTER_ACCOUNT_NAME} --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
+tenderly-simulateVotingAndExecution :
+	make tenderly-increaseTimeVotingDelay name=${name}
+	make tenderly-castVote name=${name}
+	make tenderly-increaseTimeVotingPeriod name=${name}
+	make tenderly-queueProposal name=${name}
+	make tenderly-setTimeToProposalEta name=${name}
+	make tenderly-executeProposal	name=${name}
+
+	
 deploy-sip29-interest-rate-strategies :; forge script proposals/sip_29_listing_cbBTC_and_EURC/DeployInterestRateStrategies.s.sol --force --rpc-url base --chain base --slow --account ${DEPLOYER_ACCOUNT_NAME} --broadcast --verify --delay 5 -vvvv
