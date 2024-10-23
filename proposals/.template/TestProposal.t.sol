@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.21;
 
-import { Test, console } from "forge-std/Test.sol";
+import { GovTestHelper } from "../../helpers/GovTestHelper.sol";
 import { Proposal } from "./Proposal.sol";
 
-contract TestProposal is Test {
+contract TestProposal is GovTestHelper {
     Proposal public proposal;
 
     function setUp() public {
