@@ -13,7 +13,7 @@ The aim of introducing this market is to ensure that cbBTC collateralized in ILM
 **Here are the proposed specifications for the restricted cbBTC market:**
 
 * Supply cap: 200
-* LTV: 73%
+* LTV: 78%
 * LT: 78%
 * Liquidation Bonus: 10%
 * Isolation Mode: no

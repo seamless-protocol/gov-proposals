@@ -58,7 +58,7 @@ contract TestProposal is Test, GovTestHelper {
         );
 
         assertEq(decimals, 8);
-        assertEq(ltv, 73_00);
+        assertEq(ltv, 78_00);
         assertEq(liquidationThreshold, 78_00);
         assertEq(liquidationBonus, 110_00);
         assertEq(reserveFactor, 0);

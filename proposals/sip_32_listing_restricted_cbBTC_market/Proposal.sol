@@ -40,7 +40,7 @@ contract Proposal is SeamlessGovProposal {
     });
 
     // the same parameters as for cbBTC market
-    uint256 constant rcbBTC_LTV = 73_00; // LTV to 73%
+    uint256 constant rcbBTC_LTV = 78_00; // LTV to 78%
     uint256 constant rcbBTC_LT = 78_00; // Liquidation threshold to 78%
     uint256 constant rcbBTC_LB = 110_00; // Liquidation bonus to 5%
 
