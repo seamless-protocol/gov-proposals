@@ -12,7 +12,6 @@ import { ConfiguratorInputTypes } from
     "@aave/contracts/protocol/libraries/types/ConfiguratorInputTypes.sol";
 
 contract Proposal is SeamlessGovProposal {
-
     constructor() {
         _makeProposal();
     }
@@ -26,7 +25,8 @@ contract Proposal is SeamlessGovProposal {
         variableDebtTokenImpl: SeamlessAddressBook
             .VARIABLE_DEBT_TOKEN_IMPLEMENTATION,
         underlyingAssetDecimals: cbBTC_DECIMALS,
-        interestRateStrategyAddress: SeamlessAddressBook.CBBTC_INTEREST_RATE_STRATEGY,
+        interestRateStrategyAddress: SeamlessAddressBook
+            .CBBTC_INTEREST_RATE_STRATEGY,
         underlyingAsset: SeamlessAddressBook.SEAMLESS_RESERVED_CBBTC,
         treasury: SeamlessAddressBook.SEAMLESS_TREASURY,
         incentivesController: SeamlessAddressBook.INCENTIVES_CONTROLLER,
