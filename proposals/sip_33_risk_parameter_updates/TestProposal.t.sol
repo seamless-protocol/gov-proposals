@@ -39,8 +39,8 @@ contract TestProposal is GovTestHelper {
         assertEq(reserveConfigAfter.getLtv(), 75_00); // 75%
         assertEq(reserveConfigAfter.getLiquidationThreshold(), 79_00); // 79%
         assertEq(
-            reserveConfigAfter.getLiquidationProtocolFee(),
-            reserveConfigBefore.getLiquidationProtocolFee()
+            reserveConfigAfter.getLiquidationBonus(),
+            reserveConfigBefore.getLiquidationBonus()
         );
     }
 
@@ -61,7 +61,9 @@ contract TestProposal is GovTestHelper {
         assertNotEq(reserveDataAfter.interestRateStrategyAddress, address(0));
 
         IDefaultInterestRateStrategy interestRateStrategyAfter =
-        IDefaultInterestRateStrategy(reserveDataAfter.interestRateStrategyAddress);
+        IDefaultInterestRateStrategy(
+            reserveDataAfter.interestRateStrategyAddress
+        );
 
         assertEq(
             interestRateStrategyAfter.OPTIMAL_USAGE_RATIO(),
@@ -75,6 +77,11 @@ contract TestProposal is GovTestHelper {
         assertEq(
             interestRateStrategyAfter.getVariableRateSlope2(),
             interestRateStrategyBefore.getVariableRateSlope2()
+        );
+
+        assertEq(
+            reserveDataAfter.configuration.getLiquidationBonus(),
+            reserveDataBefore.configuration.getLiquidationBonus()
         );
     }
 
@@ -93,8 +100,8 @@ contract TestProposal is GovTestHelper {
             reserveConfigBefore.getLiquidationThreshold()
         );
         assertEq(
-            reserveConfigAfter.getLiquidationProtocolFee(),
-            reserveConfigBefore.getLiquidationProtocolFee()
+            reserveConfigAfter.getLiquidationBonus(),
+            reserveConfigBefore.getLiquidationBonus()
         );
 
         assertEq(reserveConfigAfter.getReserveFactor(), 25_00); // 25%
@@ -117,7 +124,9 @@ contract TestProposal is GovTestHelper {
         assertNotEq(reserveDataAfter.interestRateStrategyAddress, address(0));
 
         IDefaultInterestRateStrategy interestRateStrategyAfter =
-        IDefaultInterestRateStrategy(reserveDataAfter.interestRateStrategyAddress);
+        IDefaultInterestRateStrategy(
+            reserveDataAfter.interestRateStrategyAddress
+        );
 
         assertEq(
             interestRateStrategyAfter.OPTIMAL_USAGE_RATIO(),
@@ -131,6 +140,11 @@ contract TestProposal is GovTestHelper {
         assertEq(interestRateStrategyAfter.getVariableRateSlope2(), 75e25); // 75%
 
         assertEq(reserveDataAfter.configuration.getReserveFactor(), 10_00); // 10%
+
+        assertEq(
+            reserveDataAfter.configuration.getLiquidationBonus(),
+            reserveDataBefore.configuration.getLiquidationBonus()
+        );
     }
 
     function test_checkWETH() public {
@@ -150,10 +164,14 @@ contract TestProposal is GovTestHelper {
         assertNotEq(reserveDataAfter.interestRateStrategyAddress, address(0));
 
         IDefaultInterestRateStrategy interestRateStrategyAfter =
-        IDefaultInterestRateStrategy(reserveDataAfter.interestRateStrategyAddress);
+        IDefaultInterestRateStrategy(
+            reserveDataAfter.interestRateStrategyAddress
+        );
 
         assertEq(reserveDataAfter.configuration.getLtv(), 80_00); // 80%
-        assertEq(reserveDataAfter.configuration.getLiquidationThreshold(), 83_00); // 83%
+        assertEq(
+            reserveDataAfter.configuration.getLiquidationThreshold(), 83_00
+        ); // 83%
         assertEq(
             reserveDataAfter.configuration.getLiquidationBonus(),
             reserveDataBefore.configuration.getLiquidationBonus()
@@ -186,8 +204,8 @@ contract TestProposal is GovTestHelper {
         assertEq(reserveConfigAfter.getLtv(), 75_00); // 75%
         assertEq(reserveConfigAfter.getLiquidationThreshold(), 79_00); // 79%
         assertEq(
-            reserveConfigAfter.getLiquidationProtocolFee(),
-            reserveConfigBefore.getLiquidationProtocolFee()
+            reserveConfigAfter.getLiquidationBonus(),
+            reserveConfigBefore.getLiquidationBonus()
         );
     }
 }

@@ -16,7 +16,8 @@ contract Proposal is SeamlessGovProposal {
         _makeProposal();
     }
 
-    address constant USDC_INTEREST_RATE_STRATEGY =  0x1163E8455d44F63E04726D6719BF0c6741095531;
+    address constant USDC_INTEREST_RATE_STRATEGY =
+        0x1163E8455d44F63E04726D6719BF0c6741095531;
 
     ConfiguratorInputTypes.InitReserveInput initReserveInput =
     ConfiguratorInputTypes.InitReserveInput({

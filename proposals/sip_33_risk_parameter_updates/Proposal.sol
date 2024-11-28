@@ -7,8 +7,15 @@ import {
 } from "../../helpers/SeamlessGovProposal.sol";
 import { IPoolConfigurator } from
     "@aave/contracts/interfaces/IPoolConfigurator.sol";
+import { DataTypes } from
+    "@aave/contracts/protocol/libraries/types/DataTypes.sol";
+import { ReserveConfiguration } from
+    "@aave/contracts/protocol/libraries/configuration/ReserveConfiguration.sol";
+import { IPool } from "@aave/contracts/interfaces/IPool.sol";
 
 contract Proposal is SeamlessGovProposal {
+    using ReserveConfiguration for DataTypes.ReserveConfigurationMap;
+
     constructor() {
         _makeProposal();
     }
@@ -16,6 +23,11 @@ contract Proposal is SeamlessGovProposal {
     /// @dev This contract is not deployed onchain, do not make transactions to other contracts
     /// or deploy a contract. Only the view/pure functions of deployed contracts can be called.
     function _makeProposal() internal virtual override {
+        IPool pool = IPool(SeamlessAddressBook.POOL);
+
+        DataTypes.ReserveConfigurationMap memory reserveConfig =
+            pool.getConfiguration(SeamlessAddressBook.CBETH);
+
         _addAction(
             SeamlessAddressBook.POOL_CONFIGURATOR,
             abi.encodeWithSelector(
@@ -23,9 +35,11 @@ contract Proposal is SeamlessGovProposal {
                 SeamlessAddressBook.CBETH,
                 75_00,
                 79_00,
-                107_50
+                reserveConfig.getLiquidationBonus()
             )
         );
+
+        reserveConfig = pool.getConfiguration(SeamlessAddressBook.USDbC);
 
         _addAction(
             SeamlessAddressBook.POOL_CONFIGURATOR,
@@ -34,9 +48,11 @@ contract Proposal is SeamlessGovProposal {
                 SeamlessAddressBook.USDbC,
                 75_00,
                 80_00,
-                105_00
+                reserveConfig.getLiquidationBonus()
             )
         );
+
+        reserveConfig = pool.getConfiguration(SeamlessAddressBook.WETH);
 
         _addAction(
             SeamlessAddressBook.POOL_CONFIGURATOR,
@@ -45,9 +61,11 @@ contract Proposal is SeamlessGovProposal {
                 SeamlessAddressBook.WETH,
                 80_00,
                 83_00,
-                105_00
+                reserveConfig.getLiquidationBonus()
             )
         );
+
+        reserveConfig = pool.getConfiguration(SeamlessAddressBook.WSTETH);
 
         _addAction(
             SeamlessAddressBook.POOL_CONFIGURATOR,
@@ -56,7 +74,7 @@ contract Proposal is SeamlessGovProposal {
                 SeamlessAddressBook.WSTETH,
                 75_00,
                 79_00,
-                107_50
+                reserveConfig.getLiquidationBonus()
             )
         );
 
