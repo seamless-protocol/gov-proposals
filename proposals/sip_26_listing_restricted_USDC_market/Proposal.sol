@@ -16,6 +16,9 @@ contract Proposal is SeamlessGovProposal {
         _makeProposal();
     }
 
+    address constant USDC_INTEREST_RATE_STRATEGY =
+        0x1163E8455d44F63E04726D6719BF0c6741095531;
+
     ConfiguratorInputTypes.InitReserveInput initReserveInput =
     ConfiguratorInputTypes.InitReserveInput({
         aTokenImpl: SeamlessAddressBook.A_TOKEN_IMPLEMENTATION,
@@ -23,7 +26,7 @@ contract Proposal is SeamlessGovProposal {
         variableDebtTokenImpl: SeamlessAddressBook
             .VARIABLE_DEBT_TOKEN_IMPLEMENTATION,
         underlyingAssetDecimals: 6,
-        interestRateStrategyAddress: SeamlessAddressBook.USDC_INTEREST_RATE_STRATEGY,
+        interestRateStrategyAddress: USDC_INTEREST_RATE_STRATEGY,
         underlyingAsset: SeamlessAddressBook.SEAMLESS_RESERVED_USDC,
         treasury: SeamlessAddressBook.SEAMLESS_TREASURY,
         incentivesController: SeamlessAddressBook.INCENTIVES_CONTROLLER,

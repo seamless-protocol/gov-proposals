@@ -12,3 +12,4 @@ deploy-proposal-tenderly :; forge script proposals/${name}/DeployProposal.s.sol 
 test-all				:; forge test --fork-url base
 
 deploy-sip29-interest-rate-strategies :; forge script proposals/sip_29_listing_cbBTC_and_EURC/DeployInterestRateStrategies.s.sol --force --rpc-url base --chain base --slow --account ${DEPLOYER_ACCOUNT_NAME} --broadcast --verify --delay 5 -vvvv
+deploy-sip33-interest-rate-strategies :; forge script proposals/sip_33_risk_parameter_updates/DeployInterestRateStrategies.s.sol --force --rpc-url base --chain base --slow --account ${DEPLOYER_ACCOUNT_NAME} --broadcast --verify --delay 5 -vvvv
