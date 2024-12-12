@@ -10,7 +10,7 @@ import { ISeamEmissionManager } from
 import { IERC20 } from "@openzeppelin/contracts/interfaces/IERC20.sol";
 
 contract Proposal is SeamlessGovProposal {
-    uint256 public constant budgetAmount = 750_00 * 1e18;
+    uint256 public constant budgetAmount = 750_000 * 1e18;
 
     constructor() {
         _makeProposal();
