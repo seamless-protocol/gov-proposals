@@ -24,3 +24,13 @@ Deploy the proposal onchain with the command:
 ```shell
 make deploy-proposal name=PROPOSAL_NAME
 ```
+
+Deploy the proposal on tenderly with the command:
+```shell
+make deploy-proposal-tenderly name=PROPOSAL_NAME
+```
+
+Run the simulation of voting and execution on tenderly with the command:
+```shell
+make tenderly-simulateVotingAndExecution name=PROPOSAL_NAME
+```

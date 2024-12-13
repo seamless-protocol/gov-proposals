@@ -12,6 +12,7 @@ contract DeployProposal is Script {
     function run(string memory descriptionPath) public {
         Proposal proposal = new Proposal();
 
+        // Change this to GOVERNOR_LONG if you want to make proposal on the long governor
         IGovernor governance = IGovernor(SeamlessAddressBook.GOVERNOR_SHORT);
 
         string memory description = vm.readFile(descriptionPath);
