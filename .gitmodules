@@ -10,3 +10,6 @@
 [submodule "lib/aave-v3-core"]
 	path = lib/aave-v3-core
 	url = https://github.com/seamless-protocol/aave-v3-core
+[submodule "lib/cl-synchronicity-price-adapter"]
+	path = lib/cl-synchronicity-price-adapter
+	url = https://github.com/seamless-protocol/cl-synchronicity-price-adapter
