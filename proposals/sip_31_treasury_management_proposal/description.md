@@ -24,3 +24,8 @@ Past transfers:
 1. SIP-10
 2. SIP-20
 3. SIP-24
+
+## Resources/References
+
+- This proposal is prepared with the [Seamless Governance Proposals tools](https://github.com/seamless-protocol/gov-proposals)
+- Proposal actions and tests can be found [here](https://github.com/seamless-protocol/gov-proposals/tree/main/proposals/sip_31_treasury_management_proposal)
