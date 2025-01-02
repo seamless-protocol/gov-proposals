@@ -1,4 +1,4 @@
-# [SIP-37] ILM Reward Refresh test
+# [SIP-37] ILM Reward Refresh
 
 ## Summary
 
