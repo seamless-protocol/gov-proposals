@@ -2,10 +2,10 @@
 
 ## Summary
 
-The following proposal outlines adjustments to the SEAM emissions budget for ILM rewards. The proposed plan is in line with ongoing token emission expansion (see this proposal for more details).
+The following proposal outlines a proposal for SEAM emissions budget for Seamless Vaults launching on Morpho. The proposed plan is in line with ongoing token emission expansion (see [this](https://seamlessprotocol.discourse.group/t/gp-7-expanding-protocol-reward-categories-increasing-token-emission-budget-for-seamless/605) proposal for more details).
 
 Proposal Highlights:
-1. SEAM Rewards for Seamless Vaults on Morpho
+1. SEAM Rewards for upcoming Seamless Vaults launching on Morpho
 2. Implement a quarterly cadence while retaining the flexibility to adjust on a monthly basis. The proposed schedule would allocate rewards from January 20, 2025, to March 31, 2025.
 4. Allocate 625,000 SEAM to the Seamless Vaults on Morpho for Q1 2025. This proposed amount is in line with the increased budget described in [GP-7](https://seamlessprotocol.discourse.group/t/gp-7-expanding-protocol-reward-categories-increasing-token-emission-budget-for-seamless/605) discussion and associated Snapshot vote.
 
