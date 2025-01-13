@@ -7,7 +7,8 @@ The following proposal outlines a proposal for SEAM emissions budget for Seamles
 Proposal Highlights:
 1. SEAM Rewards for upcoming Seamless Vaults launching on Morpho
 2. Implement a quarterly cadence while retaining the flexibility to adjust on a monthly basis. The proposed schedule would allocate rewards from January 20, 2025, to March 31, 2025.
-4. Allocate 625,000 SEAM to the Seamless Vaults on Morpho for Q1 2025. This proposed amount is in line with the increased budget described in [GP-7](https://seamlessprotocol.discourse.group/t/gp-7-expanding-protocol-reward-categories-increasing-token-emission-budget-for-seamless/605) discussion and associated Snapshot vote.
+4. Allocate 625,000 SEAM to the Seamless Vaults on Morpho for Q1 2025. This proposed amount is in line with the pre-approved budget of 30% (3 million SEAM tokens) for future ILM, vault or strategy launches described in [GP-7](https://seamlessprotocol.discourse.group/t/gp-7-expanding-protocol-reward-categories-increasing-token-emission-budget-for-seamless/605) discussion and associated Snapshot vote.
+5. Accept ownership of the Seamless Morpho Vault [0x616a4e1db48e22028f6bbf20444cd3b8e3273738](https://basescan.org/address/0x616a4e1db48e22028f6bbf20444cd3b8e3273738)
 
 ## Context and Motivation
 
@@ -20,9 +21,10 @@ The DAO’s strategic priority is to accelerate growth during an anticipated per
 3. **Sustainable Growth:** With [~55% of token supply](https://docs.seamlessprotocol.com/governance/seam-tokenomics) held by the DAO and budgeted for rewards, turning up emissions in the early years, the DAO can maximize market presence while building a long-term framework for emissions decay and sustainability over time. The current market environment offers a rare “stars-aligning” chance to capitalize on increased activity and user interest in Base. By ramping up emissions in the near term, Seamless can amplify its total value locked (TVL), attract new users, and strengthen its competitive position as the go-to lending/borrowing platform on Base. This approach will allow the protocol to regain mindshare and establish itself as a top choice for users and liquidity providers as Base continues its growth trajectory. In the medium to longer term this should translate to increased fee generation and rewards via tokenomics.
 4. **Incorporating community feedback/learnings:** The Seamless community has voiced their support for rewards in the past and to extend reward schedules vs. letting them expire. Taking this learning, pushing this proposal forward aligns with sentiment on past proposals.
 
-As per before, rewards schedules will be based on recommendations from ecosystem partners/contributors, and this represents a maximum ~3.5 month budget (it is possible less rewards are emitted during this time, and a “surplus” is run if needed).
+As per before, rewards schedules will be based on recommendations from ecosystem partners/contributors, and this represents a maximum ~3 month budget (it is possible less rewards are emitted during this time, and a “surplus” is run if needed).
 
 ## Resources/References
 
+- Github PR to enable rewards on Morpho Vault: [here](https://github.com/morpho-org/morpho-blue-reward-programs/pull/100)
 - This proposal is prepared with the [Seamless Governance Proposals tools](https://github.com/seamless-protocol/gov-proposals)
 - Proposal actions and tests can be found [here](https://github.com/seamless-protocol/gov-proposals/tree/main/proposals/sip_39_morpho_vault_seam_rewards)

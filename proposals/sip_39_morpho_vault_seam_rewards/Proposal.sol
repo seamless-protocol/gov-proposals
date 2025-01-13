@@ -6,6 +6,7 @@ import {
     SeamlessAddressBook
 } from "../../helpers/SeamlessGovProposal.sol";
 import { IERC20 } from "@openzeppelin/contracts/interfaces/IERC20.sol";
+import { Ownable2Step } from "@openzeppelin/contracts/access/Ownable2Step.sol";
 
 contract Proposal is SeamlessGovProposal {
     uint256 public constant budgetAmount = 625_000 * 1e18;
@@ -24,6 +25,11 @@ contract Proposal is SeamlessGovProposal {
                 SeamlessAddressBook.GUARDIAN_MULTISIG,
                 budgetAmount
             )
+        );
+
+        _addAction(
+            SeamlessAddressBook.SEAMLESS_USDC_MORPHO_VAULT,
+            abi.encodeWithSelector(Ownable2Step.acceptOwnership.selector)
         );
     }
 }

@@ -4,13 +4,14 @@ pragma solidity ^0.8.25;
 import { GovTestHelper } from "../../helpers/GovTestHelper.sol";
 import { Proposal } from "./Proposal.sol";
 import { IERC20 } from "@openzeppelin/contracts/interfaces/IERC20.sol";
+import { Ownable2Step } from "@openzeppelin/contracts/access/Ownable2Step.sol";
 import { SeamlessAddressBook } from "../../helpers/SeamlessGovProposal.sol";
 
 contract TestProposal is GovTestHelper {
     Proposal public proposal;
 
     function setUp() public {
-        vm.rollFork(24840539);
+        vm.rollFork(25010689);
         proposal = new Proposal();
     }
 
@@ -31,5 +32,17 @@ contract TestProposal is GovTestHelper {
 
         assertEq(guardianBalanceAfter - guardianBalanceBefore, 625_000 * 1e18);
         assertEq(timelockBalanceAfter, timelockBalanceBefore - (625_000 * 1e18));
+    }
+
+    function test_morphoVaultOwnershipAccepted_afterPassingProposal() public {
+        Ownable2Step vault =
+            Ownable2Step(SeamlessAddressBook.SEAMLESS_USDC_MORPHO_VAULT);
+
+        assertEq(vault.pendingOwner(), SeamlessAddressBook.TIMELOCK_SHORT);
+
+        _passProposalShortGov(proposal);
+
+        assertEq(vault.pendingOwner(), address(0));
+        assertEq(vault.owner(), SeamlessAddressBook.TIMELOCK_SHORT);
     }
 }
