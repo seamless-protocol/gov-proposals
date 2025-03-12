@@ -61,8 +61,9 @@ contract TestProposal is GovTestHelper {
         // Check that the tokens function returns the correct addresses
         address[] memory longGovTokens =
             ISeamGovernorV2(payable(SeamlessAddressBook.GOVERNOR_LONG)).tokens();
-        address[] memory shortGovTokens =
-            ISeamGovernorV2(payable(SeamlessAddressBook.GOVERNOR_SHORT)).tokens();
+        address[] memory shortGovTokens = ISeamGovernorV2(
+            payable(SeamlessAddressBook.GOVERNOR_SHORT)
+        ).tokens();
 
         // Both governors should have exactly three tokens
         assertEq(longGovTokens.length, 3);
