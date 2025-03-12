@@ -26,6 +26,14 @@ contract Proposal is SeamlessGovProposal {
         );
 
         _addAction(
+            SeamlessAddressBook.SEAMLESS_USDC_MORPHO_VAULT,
+            abi.encodeWithSelector(
+                IMetaMorphoV1_1Base.submitTimelock.selector,
+                3 days
+            )
+        );
+
+        _addAction(
             SeamlessAddressBook.SEAMLESS_cbBTC_MORPHO_VAULT,
             abi.encodeWithSelector(
                 IMetaMorphoV1_1Base.setFeeRecipient.selector,
@@ -34,10 +42,26 @@ contract Proposal is SeamlessGovProposal {
         );
 
         _addAction(
+            SeamlessAddressBook.SEAMLESS_cbBTC_MORPHO_VAULT,
+            abi.encodeWithSelector(
+                IMetaMorphoV1_1Base.submitTimelock.selector,
+                3 days
+            )
+        );
+
+        _addAction(
             SeamlessAddressBook.SEAMLESS_WETH_MORPHO_VAULT,
             abi.encodeWithSelector(
                 IMetaMorphoV1_1Base.setFeeRecipient.selector,
                 SeamlessAddressBook.SEAMLESS_WETH_MORPHO_VAULT_FEE_SPLITTER
+            )
+        );
+
+        _addAction(
+            SeamlessAddressBook.SEAMLESS_WETH_MORPHO_VAULT,
+            abi.encodeWithSelector(
+                IMetaMorphoV1_1Base.submitTimelock.selector,
+                3 days
             )
         );
 

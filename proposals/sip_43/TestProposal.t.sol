@@ -43,6 +43,22 @@ contract TestProposal is GovTestHelper {
         );
     }
 
+    function test_timelockIsSetCorrectly_afterPassingProposal() public {
+        // Pass the proposal
+        _passProposalShortGov(proposal);
+
+        IMetaMorphoV1_1 seamlessUSDCVault =
+            IMetaMorphoV1_1(SeamlessAddressBook.SEAMLESS_USDC_MORPHO_VAULT);
+        IMetaMorphoV1_1 seamlesscbBTCVault =
+            IMetaMorphoV1_1(SeamlessAddressBook.SEAMLESS_cbBTC_MORPHO_VAULT);
+        IMetaMorphoV1_1 seamlessWETHVault =
+            IMetaMorphoV1_1(SeamlessAddressBook.SEAMLESS_WETH_MORPHO_VAULT);
+
+        assertEq(seamlessUSDCVault.timelock(), 3 days);
+        assertEq(seamlesscbBTCVault.timelock(), 3 days);
+        assertEq(seamlessWETHVault.timelock(), 3 days);
+    }
+
     function test_tokenForManualRateIsSetCorrectly_afterPassingProposal()
         public
     {
