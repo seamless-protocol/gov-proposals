@@ -7,6 +7,7 @@ import {
 } from "../../helpers/SeamlessGovProposal.sol";
 import { IMetaMorphoV1_1Base } from
     "@seamless-governance/interfaces/IMetaMorphoV1_1.sol";
+import { IFeeKeeper } from "@seamless-governance/interfaces/IFeeKeeper.sol";
 
 contract Proposal is SeamlessGovProposal {
     constructor() {
@@ -37,6 +38,24 @@ contract Proposal is SeamlessGovProposal {
             abi.encodeWithSelector(
                 IMetaMorphoV1_1Base.setFeeRecipient.selector,
                 SeamlessAddressBook.SEAMLESS_WETH_MORPHO_VAULT_FEE_SPLITTER
+            )
+        );
+
+        _addAction(
+            SeamlessAddressBook.FEE_KEEPER,
+            abi.encodeWithSelector(
+                IFeeKeeper.setTokenForManualRate.selector,
+                SeamlessAddressBook.SEAM,
+                true
+            )
+        );
+
+        _addAction(
+            SeamlessAddressBook.FEE_KEEPER,
+            abi.encodeWithSelector(
+                IFeeKeeper.setTokenForManualRate.selector,
+                SeamlessAddressBook.ESSEAM,
+                true
             )
         );
     }
