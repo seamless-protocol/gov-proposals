@@ -1,13 +1,13 @@
 # [SIP-43] Activate stkSEAM Tokenomics
 
 ## Summary
-This proposal activates the automatic reward distribution mechanism for stkSEAM holders, enabling protocol rewards from Seamless Morpho vaults to be distributed to stakers without manual intervention.
+This proposal activates the automatic reward distribution mechanism for stkSEAM holders, enabling protocol rewards from Seamless Morpho Vaults to be distributed to stakers without manual intervention.
 
 ## Context and Motivation
 The Staking Safety Module is a fundamental component of Seamless tokenomics that empowers SEAM holders through staking rewards while enhancing protocol security. This proposal implements the reward distribution infrastructure necessary to make this system operational.
 
 ### Reward Distribution Mechanism
-The implementation configures reward distribution to source rewards from Seamless Morpho vaults (USDC, cbBTC, and WETH) by setting appropriate reward recipients for each vault to their respective reward splitter contracts. While the initial implementation focuses on Morpho vaults, the architecture allows the DAO to add additional reward sources to the RewardKeeper contract as the protocol expands.
+The implementation configures reward distribution to source rewards from Seamless Morpho Vaults (USDC, cbBTC, and WETH) by setting appropriate reward recipients for each vault to their respective reward splitter contracts. While the initial implementation focuses on Morpho Vaults, the architecture allows the DAO to add additional reward sources to the RewardKeeper contract as the protocol expands.
 
 ### Staking Safety Module
 The Staking Safety Module offers SEAM holders several benefits:
