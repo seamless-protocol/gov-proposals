@@ -11,7 +11,7 @@ import { IVotes } from "@openzeppelin/contracts/governance/utils/IVotes.sol";
 
 contract TenderlySimulation is Script {
     // Change this to GOVERNOR_LONG if the proposal is made on the long governor
-    IGovernor governance = IGovernor(SeamlessAddressBook.GOVERNOR_SHORT);
+    IGovernor governance = IGovernor(SeamlessAddressBook.GOVERNOR_LONG);
     IVotes seam = IVotes(SeamlessAddressBook.SEAM);
 
     Proposal proposal = new Proposal();
