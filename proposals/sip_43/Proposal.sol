@@ -10,7 +10,8 @@ import { IMetaMorphoV1_1Base } from
 import { IFeeKeeper } from "@seamless-governance/interfaces/IFeeKeeper.sol";
 import { UUPSUpgradeable } from
     "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
-import { IAccessControl } from "@openzeppelin/contracts/access/IAccessControl.sol";
+import { IAccessControl } from
+    "@openzeppelin/contracts/access/IAccessControl.sol";
 
 contract Proposal is SeamlessGovProposal {
     bytes32 public constant DEFAULT_ADMIN_ROLE = 0x00;

@@ -10,7 +10,8 @@ import { IFeeKeeper } from "@seamless-governance/interfaces/IFeeKeeper.sol";
 import { StakedToken } from "@seamless-governance/StakedToken.sol";
 import { IRewardsDistributor } from
     "@aave/v3-periphery/contracts/rewards/interfaces/IRewardsDistributor.sol";
-import { IAccessControl } from "@openzeppelin/contracts/access/IAccessControl.sol";
+import { IAccessControl } from
+    "@openzeppelin/contracts/access/IAccessControl.sol";
 
 contract TestProposal is GovTestHelper {
     bytes32 constant ERC1967_IMPLEMENTATION_SLOT =
@@ -64,16 +65,48 @@ contract TestProposal is GovTestHelper {
         // Pass the proposal
         _passProposalShortGov(proposal);
 
-        assertTrue(stkSEAM.hasRole(stkSEAM.DEFAULT_ADMIN_ROLE(), SeamlessAddressBook.TIMELOCK_LONG));
-        assertTrue(stkSEAM.hasRole(stkSEAM.MANAGER_ROLE(), SeamlessAddressBook.TIMELOCK_LONG));
-        assertTrue(stkSEAM.hasRole(stkSEAM.UPGRADER_ROLE(), SeamlessAddressBook.TIMELOCK_LONG));
-        assertTrue(stkSEAM.hasRole(stkSEAM.PAUSER_ROLE(), SeamlessAddressBook.TIMELOCK_LONG));
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.DEFAULT_ADMIN_ROLE(), SeamlessAddressBook.TIMELOCK_LONG
+            )
+        );
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.MANAGER_ROLE(), SeamlessAddressBook.TIMELOCK_LONG
+            )
+        );
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.UPGRADER_ROLE(), SeamlessAddressBook.TIMELOCK_LONG
+            )
+        );
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.PAUSER_ROLE(), SeamlessAddressBook.TIMELOCK_LONG
+            )
+        );
 
-        assertTrue(stkSEAM.hasRole(stkSEAM.MANAGER_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT));
-        assertTrue(stkSEAM.hasRole(stkSEAM.PAUSER_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT));
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.MANAGER_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT
+            )
+        );
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.PAUSER_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT
+            )
+        );
 
-        assertFalse(stkSEAM.hasRole(stkSEAM.DEFAULT_ADMIN_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT));
-        assertFalse(stkSEAM.hasRole(stkSEAM.UPGRADER_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT));
+        assertFalse(
+            stkSEAM.hasRole(
+                stkSEAM.DEFAULT_ADMIN_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT
+            )
+        );
+        assertFalse(
+            stkSEAM.hasRole(
+                stkSEAM.UPGRADER_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT
+            )
+        );
     }
 
     function test_feeRecipientIsSetCorrectly_afterPassingProposal() public {
