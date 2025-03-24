@@ -7,15 +7,106 @@ import { IMetaMorphoV1_1 } from
     "@seamless-governance/interfaces/IMetaMorphoV1_1.sol";
 import { SeamlessAddressBook } from "../../helpers/SeamlessAddressBook.sol";
 import { IFeeKeeper } from "@seamless-governance/interfaces/IFeeKeeper.sol";
+import { StakedToken } from "@seamless-governance/StakedToken.sol";
 import { IRewardsDistributor } from
     "@aave/v3-periphery/contracts/rewards/interfaces/IRewardsDistributor.sol";
+import { IAccessControl } from
+    "@openzeppelin/contracts/access/IAccessControl.sol";
 
 contract TestProposal is GovTestHelper {
+    bytes32 constant ERC1967_IMPLEMENTATION_SLOT =
+        0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
+
     Proposal public proposal;
 
     function setUp() public {
-        vm.rollFork(27510935);
+        vm.rollFork(27861322);
         proposal = new Proposal();
+    }
+
+    function test_stkSEAMIsUpgraded_afterPassingProposal() public {
+        address implementationBefore = address(
+            uint160(
+                uint256(
+                    vm.load(
+                        address(SeamlessAddressBook.stkSEAM),
+                        ERC1967_IMPLEMENTATION_SLOT
+                    )
+                )
+            )
+        );
+
+        assertNotEq(
+            implementationBefore, SeamlessAddressBook.stkSEAM_IMPLEMENTATION
+        );
+
+        // Pass the proposal
+        _passProposalShortGov(proposal);
+
+        address implementationAfter = address(
+            uint160(
+                uint256(
+                    vm.load(
+                        address(SeamlessAddressBook.stkSEAM),
+                        ERC1967_IMPLEMENTATION_SLOT
+                    )
+                )
+            )
+        );
+
+        assertEq(
+            implementationAfter, SeamlessAddressBook.stkSEAM_IMPLEMENTATION
+        );
+    }
+
+    function test_rolesAreGranted_afterPassingProposal() public {
+        StakedToken stkSEAM = StakedToken(SeamlessAddressBook.stkSEAM);
+
+        // Pass the proposal
+        _passProposalShortGov(proposal);
+
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.DEFAULT_ADMIN_ROLE(), SeamlessAddressBook.TIMELOCK_LONG
+            )
+        );
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.MANAGER_ROLE(), SeamlessAddressBook.TIMELOCK_LONG
+            )
+        );
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.UPGRADER_ROLE(), SeamlessAddressBook.TIMELOCK_LONG
+            )
+        );
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.PAUSER_ROLE(), SeamlessAddressBook.TIMELOCK_LONG
+            )
+        );
+
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.MANAGER_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT
+            )
+        );
+        assertTrue(
+            stkSEAM.hasRole(
+                stkSEAM.PAUSER_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT
+            )
+        );
+
+        assertFalse(
+            stkSEAM.hasRole(
+                stkSEAM.DEFAULT_ADMIN_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT
+            )
+        );
+        assertFalse(
+            stkSEAM.hasRole(
+                stkSEAM.UPGRADER_ROLE(), SeamlessAddressBook.TIMELOCK_SHORT
+            )
+        );
     }
 
     function test_feeRecipientIsSetCorrectly_afterPassingProposal() public {
