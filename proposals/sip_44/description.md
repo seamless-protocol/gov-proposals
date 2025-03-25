@@ -24,7 +24,9 @@ The proposed quarterly reward allocations are:
 
 ## Context and Motivation
 
-This proposal aligns with our broader token emissions strategy outlined [here](https://seamlessprotocol.discourse.group/t/gp-7-expanding-protocol-reward-categories-increasing-token-emission-budget-for-seamless/605). The key drivers for continuing emissions are:
+This proposal aligns with the broader token emissions strategy outlined [here](https://seamlessprotocol.discourse.group/t/gp-7-expanding-protocol-reward-categories-increasing-token-emission-budget-for-seamless/605). NOTE: this proposal was already discussed and approved via governance process, snapshot labs results [here](https://snapshot.box/#/s:seamlessprotocol.eth/proposal/0x113a9f75eb623fcccdc2b4400ecb0e125b95c0085bf0c8b44c5f136b27c29c2d). As such, this current proposal will move straight to onchain governance.
+
+The key drivers for continuing emissions are:
 
 1. **Market Timing:** The current macro environment and crypto market sentiment create an opportune moment to accelerate growth and capture market share through strategic token emissions.
 
