@@ -13,6 +13,7 @@ The proposed quarterly reward allocations are:
 2. **Legacy Lending Platform (625,000 SEAM)** 
    - Primarily distributed as esSEAM to incentivize long-term alignment
    - Maintain competitive yields for lenders and borrowers
+   - Pending the result of [this](https://snapshot.box/#/s:seamlessprotocol.eth/proposal/0x901e2aed03877d64a0414496f69b7febb76272cf4a1526c6d3b8813dac455074) Snapshot Labs vote, these rewards may be returned to the DAO in accordance with the sunset plan timeline.
 
 3. **Safety Module (375,000 SEAM)**
    - Encourage protocol security through staking incentives
