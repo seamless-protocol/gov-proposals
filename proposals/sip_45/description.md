@@ -2,7 +2,7 @@
 
 ## Summary
 
-This proposal implements a freeze on all markets in the legacy Seamless lending platform as part of the previously approved sunset plan. The freeze will prevent new deposits and borrows while allowing users to continue withdrawing their assets and repaying loans. This action represents a key milestone in transitioning users from the legacy platform to Morpho Blue, which offers improved capital efficiency, reduced gas costs, and enhanced risk management.
+This proposal implements a freeze on all markets in the legacy Seamless lending platform as part of the previously approved sunset plan. The freeze will prevent new deposits and borrows while allowing users to continue withdrawing their assets and repaying loans. This action represents a key milestone in transitioning users from the legacy platform to Seamless Vaults built on Morpho, which offers improved capital efficiency, reduced gas costs, and enhanced risk management.
 
 
 ## Context and motivation
@@ -17,9 +17,9 @@ The implementation calls `setReserveFreeze(true)` on all assets in the protocol 
 4. Allows existing borrowers to repay their loans
 5. Maintains all other functionality including liquidations
 
-This freeze represents a key milestone in the Seamless sunset plan, which aims to gradually transition users from the legacy platform to Morpho Blue. By freezing the markets rather than pausing them, we ensure users maintain full access to their funds while preventing new positions from being opened.
+This freeze represents a key milestone in the Seamless sunset plan, which aims to gradually transition users from the legacy platform to Seamless Vaults on Morpho . By freezing the markets rather than pausing them, we ensure users maintain full access to their funds while preventing new positions from being opened.
 
-The timing of this freeze aligns with our previously communicated timeline and follows extensive community discussion about the benefits of migrating to Morpho Blue, which offers improved capital efficiency, reduced gas costs, and enhanced risk management.
+The timing of this freeze aligns with our previously communicated timeline and follows extensive community discussion about the benefits of migrating to Morpho, which offers improved capital efficiency, reduced gas costs, and enhanced risk management.
 
 ## Resources & References
 
