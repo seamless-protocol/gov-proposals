@@ -42,9 +42,17 @@ contract TenderlySimulation is Script {
         _fundETH();
         _fundSEAM();
 
+        moveOneBlockForwardOneSecond();
+    }
+
+    function delegateToProposer() public {
         vm.startBroadcast(proposerPk);
         seam.delegate(proposerAddress);
         vm.stopBroadcast();
+    }
+
+    function moveOneBlockForwardOneSecond() public {
+        vm.rpc("evm_increaseTime", "[\"0x1\"]");
     }
 
     function _fundSEAM() public {

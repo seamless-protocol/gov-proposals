@@ -11,7 +11,7 @@ import { IVotes } from "@openzeppelin/contracts/governance/utils/IVotes.sol";
 
 contract TenderlySimulation is Script {
     // Change this to GOVERNOR_LONG if the proposal is made on the long governor
-    IGovernor governance = IGovernor(SeamlessAddressBook.GOVERNOR_LONG);
+    IGovernor governance = IGovernor(SeamlessAddressBook.GOVERNOR_SHORT);
     IVotes seam = IVotes(SeamlessAddressBook.SEAM);
 
     Proposal proposal = new Proposal();
@@ -42,9 +42,17 @@ contract TenderlySimulation is Script {
         _fundETH();
         _fundSEAM();
 
+        moveOneBlockForwardOneSecond();
+    }
+
+    function delegateToProposer() public {
         vm.startBroadcast(proposerPk);
         seam.delegate(proposerAddress);
         vm.stopBroadcast();
+    }
+
+    function moveOneBlockForwardOneSecond() public {
+        vm.rpc("evm_increaseTime", "[\"0x1\"]");
     }
 
     function _fundSEAM() public {
