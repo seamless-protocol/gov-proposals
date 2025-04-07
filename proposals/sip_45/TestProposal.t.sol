@@ -31,20 +31,20 @@ contract TestProposal is GovTestHelper {
             (,,,,,,,,, bool isFrozen) =
                 poolDataProvider.getReserveConfigurationData(assets[i]);
             assertEq(isFrozen, false);
-            
+
             // Deal tokens to this contract for testing
             deal(assets[i], address(this), 2);
-            
+
             // Approve the pool to spend tokens
             IERC20(assets[i]).approve(address(pool), type(uint256).max);
-            
+
             // Supply tokens to the pool
             pool.supply(assets[i], 2, address(this), 0);
-            
+
             // Check if the asset can be borrowed
-            (,,,,,, bool borrowingEnabled,,,) = 
+            (,,,,,, bool borrowingEnabled,,,) =
                 poolDataProvider.getReserveConfigurationData(assets[i]);
-                
+
             if (borrowingEnabled) {
                 // Borrow tokens from the pool
                 pool.borrow(assets[i], 1, 2, 0, address(this));
@@ -66,19 +66,19 @@ contract TestProposal is GovTestHelper {
             pool.borrow(assets[i], 100, 2, 0, address(this));
 
             // Check that withdraw and repay operations still work when reserves are frozen
-            
+
             // Withdraw should still work
             pool.withdraw(assets[i], 2, address(this));
-            
+
             // Repay should still work
-            (,,,,,, bool borrowingEnabled,,,) = 
+            (,,,,,, bool borrowingEnabled,,,) =
                 poolDataProvider.getReserveConfigurationData(assets[i]);
-                
+
             if (borrowingEnabled) {
                 // Get current debt before repaying
-                (,, uint256 currentDebt,,,,,,) = 
-                    poolDataProvider.getUserReserveData(assets[i], address(this));
-                
+                (,, uint256 currentDebt,,,,,,) = poolDataProvider
+                    .getUserReserveData(assets[i], address(this));
+
                 if (currentDebt > 0) {
                     pool.repay(assets[i], 1, 2, address(this));
                 }
