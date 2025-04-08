@@ -14,6 +14,8 @@ test-all				:; forge test --fork-url base
 # Tendely simulation
 # Make sure the proposer address has enough delegated voting power to propose and meet quorum. Mint and delegate tokens on the fork
 tenderly-setupProposer						:; forge script proposals/${name}/TenderlySimulation.s.sol --sig "setupProposer()" --rpc-url tenderly --slow --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
+tenderly-moveOneBlockForwardOneSecond		:; forge script proposals/${name}/TenderlySimulation.s.sol --sig "moveOneBlockForwardOneSecond()" --rpc-url tenderly --slow --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}
+tenderly-delegateToProposer		:; forge script proposals/${name}/TenderlySimulation.s.sol --sig "delegateToProposer()" --rpc-url tenderly --slow --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
 tenderly-createProposal						:; forge script proposals/${name}/TenderlySimulation.s.sol ./proposals/${name}/description.md --sig "createProposal(string)" --rpc-url tenderly --slow --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}
 tenderly-increaseTimeVotingDelay  :; forge script proposals/${name}/TenderlySimulation.s.sol --sig "increaseTimeVotingDelay()" --rpc-url tenderly --slow --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
 tenderly-castVote 							  :; forge script proposals/${name}/TenderlySimulation.s.sol ./proposals/${name}/description.md --sig "castVote(string)" --rpc-url tenderly --slow --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
@@ -23,6 +25,8 @@ tenderly-setTimeToProposalEta			:; forge script proposals/${name}/TenderlySimula
 tenderly-executeProposal					:; forge script proposals/${name}/TenderlySimulation.s.sol ./proposals/${name}/description.md --sig "executeProposal(string)" --rpc-url tenderly --slow --broadcast -vvvv --verify --verifier-url ${TENDERLY_FORK_VERIFIER_URL} --etherscan-api-key ${TENDERLY_ACCESS_KEY}	
 tenderly-simulateVotingAndExecution :
 	make tenderly-setupProposer name=${name}
+	make tenderly-delegateToProposer name=${name}
+	make tenderly-moveOneBlockForwardOneSecond name=${name}
 	make tenderly-createProposal name=${name}
 	make tenderly-increaseTimeVotingDelay name=${name}
 	make tenderly-castVote name=${name}
