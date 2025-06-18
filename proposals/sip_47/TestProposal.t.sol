@@ -34,12 +34,10 @@ contract TestProposal is GovTestHelper {
             seam.balanceOf(SeamlessAddressBook.TIMELOCK_SHORT);
 
         assertEq(
-            guardianBalanceAfter,
-            guardianBalanceBefore + (2_250_000 * 1e18)
+            guardianBalanceAfter, guardianBalanceBefore + (2_250_000 * 1e18)
         );
         assertEq(
-            timelockBalanceAfter,
-            timelockBalanceBefore - (2_250_000 * 1e18)
+            timelockBalanceAfter, timelockBalanceBefore - (2_250_000 * 1e18)
         );
     }
 }
