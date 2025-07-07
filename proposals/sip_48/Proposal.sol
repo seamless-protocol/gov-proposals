@@ -17,8 +17,9 @@ contract Proposal is SeamlessGovProposal {
     /// @dev This contract is not deployed onchain, do not make transactions to other contracts
     /// or deploy a contract. Only the view/pure functions of deployed contracts can be called.
     function _makeProposal() internal virtual override {
-        uint256 seamTransferStrategySeamBalance =
-            IERC20(SeamlessAddressBook.SEAM).balanceOf(SeamlessAddressBook.SEAM_TRANSFER_STRATEGY);
+        uint256 seamTransferStrategySeamBalance = IERC20(
+            SeamlessAddressBook.SEAM
+        ).balanceOf(SeamlessAddressBook.SEAM_TRANSFER_STRATEGY);
 
         _addAction(
             SeamlessAddressBook.SEAM_TRANSFER_STRATEGY,
@@ -30,8 +31,9 @@ contract Proposal is SeamlessGovProposal {
             )
         );
 
-        uint256 esSeamTransferStrategySeamBalance =
-            IERC20(SeamlessAddressBook.SEAM).balanceOf(SeamlessAddressBook.ESSEAM_TRANSFER_STRATEGY);
+        uint256 esSeamTransferStrategySeamBalance = IERC20(
+            SeamlessAddressBook.SEAM
+        ).balanceOf(SeamlessAddressBook.ESSEAM_TRANSFER_STRATEGY);
 
         _addAction(
             SeamlessAddressBook.ESSEAM_TRANSFER_STRATEGY,
@@ -43,8 +45,9 @@ contract Proposal is SeamlessGovProposal {
             )
         );
 
-        uint256 usdcTransferStrategyUsdcBalance =
-            IERC20(SeamlessAddressBook.USDC).balanceOf(SeamlessAddressBook.USDC_TRANSFER_STRATEGY);
+        uint256 usdcTransferStrategyUsdcBalance = IERC20(
+            SeamlessAddressBook.USDC
+        ).balanceOf(SeamlessAddressBook.USDC_TRANSFER_STRATEGY);
 
         _addAction(
             SeamlessAddressBook.USDC_TRANSFER_STRATEGY,
@@ -56,8 +59,9 @@ contract Proposal is SeamlessGovProposal {
             )
         );
 
-        uint256 brettTransferStrategySeamBalance =
-            IERC20(SeamlessAddressBook.BRETT).balanceOf(SeamlessAddressBook.BRETT_TRANSFER_STRATEGY);
+        uint256 brettTransferStrategySeamBalance = IERC20(
+            SeamlessAddressBook.BRETT
+        ).balanceOf(SeamlessAddressBook.BRETT_TRANSFER_STRATEGY);
 
         _addAction(
             SeamlessAddressBook.BRETT_TRANSFER_STRATEGY,

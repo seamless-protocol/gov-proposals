@@ -14,9 +14,8 @@ contract TestProposal is GovTestHelper {
         proposal = new Proposal();
     }
 
-    function test_seamAndEsseamClaimedAndTransferedToTimelock_afterPassingProposal()
-        public
-    {
+    function test_seamAndEsseamClaimedAndTransferedToTimelock_afterPassingProposal(
+    ) public {
         IERC20 seam = IERC20(SeamlessAddressBook.SEAM);
 
         uint256 seamTransferStrategySeamBalance = IERC20(
@@ -37,10 +36,13 @@ contract TestProposal is GovTestHelper {
 
         assertEq(
             timelockBalanceAfter,
-            timelockBalanceBefore + seamTransferStrategySeamBalance + esseamTransferStrategyEsseamBalance
+            timelockBalanceBefore + seamTransferStrategySeamBalance
+                + esseamTransferStrategyEsseamBalance
         );
         assertEq(seam.balanceOf(SeamlessAddressBook.SEAM_TRANSFER_STRATEGY), 0);
-        assertEq(seam.balanceOf(SeamlessAddressBook.ESSEAM_TRANSFER_STRATEGY), 0);
+        assertEq(
+            seam.balanceOf(SeamlessAddressBook.ESSEAM_TRANSFER_STRATEGY), 0
+        );
     }
 
     function test_usdcClaimedAndTransferedToTimelock_afterPassingProposal()
@@ -88,6 +90,8 @@ contract TestProposal is GovTestHelper {
             timelockBalanceAfter,
             timelockBalanceBefore + brettTransferStrategyBrettBalance
         );
-        assertEq(brett.balanceOf(SeamlessAddressBook.BRETT_TRANSFER_STRATEGY), 0);
+        assertEq(
+            brett.balanceOf(SeamlessAddressBook.BRETT_TRANSFER_STRATEGY), 0
+        );
     }
 }
