@@ -254,4 +254,50 @@ contract TestProposal is GovTestHelper {
             "Timelock should have UPGRADER_ROLE after proposal (not revoked)"
         );
     }
+
+    function test_specificLeverageTokenImplementationIsUpgraded() public {
+        // Specific leverage token instance to check
+        address leverageToken = 0xA2fceEAe99d2cAeEe978DA27bE2d95b0381dBB8c;
+        
+        // Get the beacon address from the leverage token
+        // Beacon proxy stores the beacon address at a specific storage slot
+        bytes32 beaconSlot = 0xa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50;
+        address beacon = address(
+            uint160(
+                uint256(
+                    vm.load(leverageToken, beaconSlot)
+                )
+            )
+        );
+        
+        // Verify the beacon is the expected Base Leverage Token Factory Proxy
+        assertEq(
+            beacon,
+            SeamlessAddressBook.BASE_LEVERAGE_TOKEN_FACTORY_PROXY,
+            "Leverage token should be using the Base Leverage Token Factory beacon"
+        );
+        
+        // Get the current implementation from the beacon
+        address implementationBefore = UpgradeableBeacon(beacon).implementation();
+        
+        // Verify it's not already the new implementation
+        assertNotEq(
+            implementationBefore,
+            EXPECTED_NEW_BASE_LEVERAGE_TOKEN_IMPLEMENTATION,
+            "Leverage token implementation should not be upgraded yet"
+        );
+        
+        // Pass the proposal
+        _passProposalShortGov(proposal);
+        
+        // Get the implementation after the proposal
+        address implementationAfter = UpgradeableBeacon(beacon).implementation();
+        
+        // Verify the implementation has been upgraded to the expected address
+        assertEq(
+            implementationAfter,
+            EXPECTED_NEW_BASE_LEVERAGE_TOKEN_IMPLEMENTATION,
+            "Leverage token at 0xA2fceEAe99d2cAeEe978DA27bE2d95b0381dBB8c should have upgraded implementation"
+        );
+    }
 }
