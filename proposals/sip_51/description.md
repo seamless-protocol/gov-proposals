@@ -46,7 +46,6 @@ BRETT: 30,407.07
 VIRTUAL: 718.73
 MORPHO: 111.14
 cbETH: 0.10
-ABX: 90,532.00
 COMP: 3.13
 ETH: 0.01
 
@@ -56,7 +55,7 @@ All assets currently held in the Seamless DAO treasury will be converted into US
 - Reduce volatility risk during wind-down
 - Ensure liquidity for obligations
 
-Once the conversion process is complete, the total amount of USDC received will be published in a separate comment on this proposal and announced in the Seamless Discord server.
+Once the conversion process is complete, the total amount of USDC received will be published in a separate comment on this proposal and announced in the Seamless Discord server. DAO-held tokens and other assets will be recovered and liquidated to USDC on a best-efforts basis, with the goal of minimizing market impact and slippage where reasonably possible. Some assets may be held on deprecated platforms or otherwise be difficult to access, and reasonable efforts will be made to retrieve and liquidate them; however, full recovery cannot be guaranteed. Actual timing, execution prices, and proceeds will depende on market conditions, available liquidity, platform access, and other factors outside the control of the DAO and the individuals executing the wind-down.
 
 * If this proposal is agreed to, core contributors would be tasked with identifying and executing on the best opportunities to sell the locked veAERO position. Since veAERO is an NFT representing a locked AERO position, it cannot be traded on either centralized or decentralized exchanges. Therefore, any sale must be conducted over the counter (OTC), with the exchange rate determined by the terms agreed between the buyer and the seller.
 
@@ -74,7 +73,8 @@ All remaining treasury funds after Steps 2 and 3 will be distributed to:
 
 Key Conditions:
 
-- A snapshot will be taken on July 24, 2026, to give users who hold SEAM on centralized exchanges (CEXs) sufficient time to withdraw their tokens to self-custodied wallets. If you hold SEAM on Ethereum mainnet, you will remain eligible to claim your allocation.
+- A snapshot will be taken on July 24, 2026 at at approximately 12:00pm Pacific Time (19:00 UTC). Because of block timing, indexing, and data processing may vary slightly, users should keep their SEAM in an eligible self-custodied wallet on Ethereum or Base for the full day on July 24, transfers made close to the snapshot may not be reflected.
+- If you hold SEAM on Ethereum mainnet, you will remain eligible to claim your allocation on Base.
 - Distribution claims will be processed on Base through https://app.merkl.xyz/.
 - Users with smart contract wallets on Ethereum mainnet should ensure they control the same address on Base, or migrate their wallet before the snapshot.
 - Exchanges (both CEXes and DEXes), aggregators, certain smart contracts (deemed unable to claim) and other protocols are excluded from the distribution. Please withdraw your tokens to self-custodied wallets before July 24, 2026.
