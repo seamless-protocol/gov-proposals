@@ -57,17 +57,31 @@ contract TestProposal is GovTestHelper {
 
             address assetAddress =
                 AToken(aTokens[i].tokenAddress).UNDERLYING_ASSET_ADDRESS();
-            IPool(SeamlessAddressBook.POOL)
-                .withdraw(
-                    assetAddress,
-                    1e6,
-                    SeamlessAddressBook.SEAMLESS_AERA_VAULT_ADMIN
+
+            if (assetAddress == 0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452) {
+                // Insufficient wstETH currently to withdraw full amount until market outstanding debt is repaid
+                IPool(SeamlessAddressBook.POOL)
+                    .withdraw(
+                        assetAddress,
+                        1e18,
+                        SeamlessAddressBook.SEAMLESS_AERA_VAULT_ADMIN
+                    );
+            } else {
+                IPool(SeamlessAddressBook.POOL)
+                    .withdraw(
+                        assetAddress,
+                        type(uint256).max,
+                        SeamlessAddressBook.SEAMLESS_AERA_VAULT_ADMIN
+                    );
+                assertEq(
+                    IERC20(aTokens[i].tokenAddress)
+                        .balanceOf(
+                            SeamlessAddressBook.SEAMLESS_AERA_VAULT_ADMIN
+                        ),
+                    0
                 );
-            // assertEq(
-            //     IERC20(aTokens[i].tokenAddress)
-            //         .balanceOf(SeamlessAddressBook.SEAMLESS_AERA_VAULT_ADMIN),
-            //     0
-            // );
+            }
+
             vm.stopPrank();
         }
     }
