@@ -15,6 +15,7 @@ contract TestProposal is GovTestHelper {
     Proposal public proposal;
 
     function setUp() public {
+        vm.rollFork(49180423);
         proposal = new Proposal();
     }
 
